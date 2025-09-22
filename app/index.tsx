@@ -1,0 +1,49 @@
+import AvatarFC from "@/components/AvatarFC";
+import CartIcon from "@/components/Icons/CartIcon";
+import SearchbarFC from "@/components/SearchbarFC";
+import { Colors, Fonts } from "@/constants";
+import { rf, rh, rw } from "@/utils/dimensions";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+export default function HomeScreen() {
+  const router = useRouter();
+
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.appBarContainer}>
+        <AvatarFC />
+        <Text style={styles.appbarTxt}>FoFo Store</Text>
+        <TouchableOpacity>
+          <CartIcon />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.serachbarContainer}>
+        <SearchbarFC />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {},
+  appBarContainer: {
+    paddingHorizontal: rw(24),
+    paddingTop: rh(63),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  appbarTxt: {
+    fontSize: rf(24),
+    fontFamily: Fonts.circularstdmedium500,
+    fontWeight: "700",
+    color: Colors.text,
+  },
+  serachbarContainer: {},
+});
