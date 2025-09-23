@@ -9,7 +9,9 @@ export default function ItemListCategory({ title }: ItemListCategoryType) {
   return (
     <View style={styles.container}>
       <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
-      <Text style={styles.title}>{title}</Text>
+      <Text numberOfLines={1} style={styles.title}>
+        {title}
+      </Text>
     </View>
   );
 }
@@ -27,5 +29,6 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.circularstdmedium500,
     color: Colors.text,
     fontSize: rf(12),
+    width: rw(54),
   },
 });

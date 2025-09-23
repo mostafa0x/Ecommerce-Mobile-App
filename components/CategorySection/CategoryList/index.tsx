@@ -6,7 +6,7 @@ import ItemListCategory from "./ItemList";
 
 export default function CategoryList() {
   const renderItem = useCallback(() => {
-    return <ItemListCategory title="sas" />;
+    return <ItemListCategory title="Category Name" />;
   }, []);
   const ItemSeparator = useCallback(() => {
     return <View style={styles.itemSeparatorContainer}></View>;

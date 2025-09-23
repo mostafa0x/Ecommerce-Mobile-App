@@ -13,7 +13,7 @@ export default function ItemListProduct() {
       </ImageBackground>
       <View style={styles.txtContainer}>
         <Text numberOfLines={1} allowFontScaling style={styles.title}>
-          ItemListProduct
+          Product Name
         </Text>
         <Text
           numberOfLines={1}
@@ -21,7 +21,7 @@ export default function ItemListProduct() {
           minimumFontScale={0.5}
           style={styles.price}
         >
-          $244
+          $999999999
         </Text>
       </View>
     </View>
