@@ -22,7 +22,7 @@ export default function RootLayout() {
           }}
         />
       </SafeAreaView>
-      <StatusBar style="auto" />
+      <StatusBar style="dark" />
     </SafeAreaProvider>
   );
 }

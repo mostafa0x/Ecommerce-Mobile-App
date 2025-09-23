@@ -21,6 +21,7 @@ export default function CategoryList() {
         horizontal
         ItemSeparatorComponent={ItemSeparator}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
