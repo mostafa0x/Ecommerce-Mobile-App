@@ -1,4 +1,5 @@
 import AvatarFC from "@/components/AvatarFC";
+import CategorySection from "@/components/CategorySection";
 import CartIcon from "@/components/Icons/CartIcon";
 import SearchbarFC from "@/components/SearchbarFC";
 import { Colors, Fonts } from "@/constants";
@@ -26,6 +27,9 @@ export default function HomeScreen() {
       <View style={styles.serachbarContainer}>
         <SearchbarFC />
       </View>
+      <View style={styles.categoryContainer}>
+        <CategorySection />
+      </View>
     </View>
   );
 }
@@ -46,4 +50,5 @@ const styles = StyleSheet.create({
     color: Colors.text,
   },
   serachbarContainer: {},
+  categoryContainer: {},
 });
