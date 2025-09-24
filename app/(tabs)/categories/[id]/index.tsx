@@ -1,7 +1,8 @@
 import BackButton from "@/components/BackButton/BackButton";
 import FilltersByCategories from "@/components/FilltersByCategories";
+import ProductsList from "@/components/Products/ProductsList";
 import { Colors, Fonts } from "@/constants";
-import { CategoriesType } from "@/types/categoriesType";
+import { CategoriesType } from "@/types/CategoriesType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
@@ -19,7 +20,11 @@ export default function Category() {
         </Text>
       </View>
       <View style={styles.btnsContainer}></View>
-      <FilltersByCategories />
+      {category == "All" ? (
+        <FilltersByCategories />
+      ) : (
+        <ProductsList calledFrom="fillter" />
+      )}
     </View>
   );
 }
@@ -27,11 +32,11 @@ export default function Category() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: rh(63),
-    paddingHorizontal: rw(27),
   },
   upperSection: {
     gap: rh(16),
     marginBottom: rh(16),
+    paddingHorizontal: rw(27),
   },
   title: {
     fontFamily: Fonts.circularstdmedium500,

@@ -11,7 +11,7 @@ export default function ProductsSection() {
         <UpperSIde title="Top Selling" />
       </View>
       <View style={styles.list}>
-        <ProductsList />
+        <ProductsList calledFrom="Home" />
       </View>
     </View>
   );

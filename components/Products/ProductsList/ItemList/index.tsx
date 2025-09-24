@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     width: rw(159),
     height: rh(281),
     backgroundColor: Colors.secBg,
-    marginRight: rw(12),
     borderRadius: rw(8),
   },
   imgContainer: {

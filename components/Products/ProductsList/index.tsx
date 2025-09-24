@@ -1,23 +1,36 @@
+import { ProductsListTypes } from "@/types/ProductsListTypes";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import ItemListProduct from "./ItemList";
 
-export default function ProductsList() {
+export default function ProductsList({
+  calledFrom = "Home",
+}: ProductsListTypes) {
+  const fromHome = calledFrom === "Home";
   const renderItem = useCallback(() => {
     return <ItemListProduct />;
   }, []);
+  const ItemSeparator = useCallback(() => {
+    return <View style={styles.itemSeparator}></View>;
+  }, []);
+
   return (
-    <View style={styles.constainer}>
+    <View style={[styles.constainer, !fromHome && styles.fillterContainer]}>
       <FlashList
         style={styles.list}
-        data={Array(4)}
+        data={[1, 2, 3, 4, 5, 6, 7]}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
-        horizontal
-        contentContainerStyle={styles.contentContainer}
+        horizontal={fromHome}
+        numColumns={fromHome ? 0 : 2}
+        contentContainerStyle={[
+          styles.contentContainer,
+          !fromHome && styles.fillterContentContainer,
+        ]}
         showsHorizontalScrollIndicator={false}
+        ItemSeparatorComponent={ItemSeparator}
       />
     </View>
   );
@@ -25,11 +38,19 @@ export default function ProductsList() {
 
 const styles = StyleSheet.create({
   constainer: { width: "100%", height: "auto" },
-  list: {
-    width: "100%",
-    height: rh(281),
+  fillterContainer: {
+    height: "100%",
   },
+
+  list: {},
   contentContainer: {
     paddingHorizontal: rw(24),
+  },
+  fillterContentContainer: {
+    paddingBottom: rh(300),
+  },
+  itemSeparator: {
+    width: rw(12),
+    height: rh(20),
   },
 });
