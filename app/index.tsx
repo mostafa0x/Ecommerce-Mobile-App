@@ -1,19 +1,11 @@
-import AvatarFC from "@/components/AvatarFC";
+import Appbar from "@/components/Appbar";
 import CategorySection from "@/components/CategorySection";
-import CartIcon from "@/components/Icons/CartIcon";
 import ProductsSection from "@/components/Products/ProductsSection";
 import SearchbarFC from "@/components/SearchbarFC";
-import { Colors, Fonts } from "@/constants";
-import { rf, rh, rw } from "@/utils/dimensions";
+import { rh } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -27,13 +19,8 @@ export default function HomeScreen() {
       contentContainerStyle={styles.contentContainer}
       style={styles.container}
     >
-      <View style={styles.appBarContainer}>
-        <AvatarFC />
-        <Text style={styles.appbarTxt}>FoFo Store</Text>
-        <TouchableOpacity>
-          <CartIcon />
-        </TouchableOpacity>
-      </View>
+      <Appbar />
+
       <View style={styles.serachbarContainer}>
         <SearchbarFC />
       </View>
@@ -42,7 +29,6 @@ export default function HomeScreen() {
       </View>
       <View style={styles.productsContianer}>
         <ProductsSection />
-        <ProductsSection />
       </View>
     </ScrollView>
   );
@@ -50,19 +36,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {},
-  appBarContainer: {
-    paddingHorizontal: rw(24),
-    paddingTop: rh(63),
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  appbarTxt: {
-    fontSize: rf(24),
-    fontFamily: Fonts.circularstdmedium500,
-    fontWeight: "700",
-    color: Colors.text,
-  },
+
   serachbarContainer: {},
   categoryContainer: {},
   productsContianer: {

@@ -24,7 +24,7 @@ export default function ProductsList({
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         horizontal={fromHome}
-        numColumns={fromHome ? 0 : 2}
+        numColumns={fromHome ? 1 : 2}
         contentContainerStyle={[
           styles.contentContainer,
           !fromHome && styles.fillterContentContainer,

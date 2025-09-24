@@ -1,10 +1,10 @@
 import { rh, rw } from "@/utils/dimensions";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import ProductsList from "../ProductsList";
 import UpperSIde from "./UpperSIde";
 
-export default function ProductsSection() {
+function ProductsSection() {
   return (
     <View style={styles.container}>
       <View style={styles.uppderContainer}>
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
   },
   list: { marginTop: rh(16) },
 });
+
+export default memo(ProductsSection);
