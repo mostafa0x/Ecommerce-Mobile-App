@@ -1,5 +1,7 @@
 import BackButton from "@/components/BackButton/BackButton";
+import FilltersByCategories from "@/components/FilltersByCategories";
 import { Colors, Fonts } from "@/constants";
+import { CategoriesType } from "@/types/categoriesType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
@@ -7,15 +9,17 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function Category() {
   const { id } = useLocalSearchParams();
-  const category = Array.isArray(id) ? id[0] : id;
+  const category = (Array.isArray(id) ? id[0] : id) as CategoriesType;
   return (
     <View style={styles.container}>
       <View style={styles.upperSection}>
         <BackButton />
-        <Text style={styles.title}>Shop by Categories</Text>
+        <Text style={styles.title}>
+          {category === "All" ? "Shop by Categories" : category}
+        </Text>
       </View>
       <View style={styles.btnsContainer}></View>
-      <Text>{category}</Text>
+      <FilltersByCategories />
     </View>
   );
 }
