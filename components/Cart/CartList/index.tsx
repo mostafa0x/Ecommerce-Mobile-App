@@ -5,6 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 import React, { useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
 import CartItem from "./item";
 
 export default function CartList() {
@@ -34,10 +35,16 @@ export default function CartList() {
 
   return (
     <View style={styles.container}>
-      <Text>CartList</Text>
+      <Button
+        onPress={() => console.log("x")}
+        labelStyle={styles.lableBtn}
+        style={styles.btn}
+      >
+        Remove All
+      </Button>
       <FlashList
         numColumns={1}
-        data={[]}
+        data={[1]}
         renderItem={renderItem}
         ListEmptyComponent={listEmpty}
       />
@@ -64,5 +71,15 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.circularstdmedium500,
     color: Colors.text,
     fontSize: rf(24),
+  },
+  btn: {
+    alignItems: "flex-end",
+    marginTop: rh(34),
+    marginBottom: rh(16),
+  },
+  lableBtn: {
+    fontFamily: Fonts.circularstdmedium500,
+    fontSize: rf(16),
+    color: Colors.text,
   },
 });

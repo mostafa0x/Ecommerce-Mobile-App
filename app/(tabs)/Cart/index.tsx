@@ -12,7 +12,7 @@ export default function CartScreen() {
         <BackButton />
         <Text style={styles.titleAppbar}>Cart</Text>
       </View>
-      <View>
+      <View style={styles.list}>
         <CartList />
       </View>
     </View>
@@ -22,12 +22,15 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     paddingTop: rh(63),
-    paddingHorizontal: rw(27),
   },
   appbarContainer: {
+    paddingHorizontal: rw(27),
     flexDirection: "row",
     alignItems: "center",
     gap: rw(113),
+  },
+  list: {
+    paddingHorizontal: rw(24),
   },
   titleAppbar: {
     fontFamily: Fonts.circularstdmedium500,
