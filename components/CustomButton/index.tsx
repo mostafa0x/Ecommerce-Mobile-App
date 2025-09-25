@@ -10,13 +10,14 @@ function CustomButton({
   lable = "Empty",
   icon,
   color = "secBg",
-
+  widthSize = 344,
   redirect,
 }: {
   lable: string;
   icon?: CustomBtnIconsType;
   color: CustomBtnColorsType;
-  redirect: "/";
+  redirect: "/" | "/categories/All";
+  widthSize: number;
 }) {
   const router = useRouter();
 
@@ -28,19 +29,26 @@ function CustomButton({
       onPress={handlePress}
       style={[
         styles.button,
+        { width: widthSize },
         icon ? undefined : styles.withoutIcons,
         { backgroundColor: Colors[color] },
       ]}
     >
       {icon === "google" && <GoogleIcon />}
-      <Text style={styles.labelBtn}>{lable}</Text>
+      <Text
+        style={[
+          styles.labelBtn,
+          { color: color == "secBg" ? Colors.text : "white" },
+        ]}
+      >
+        {lable}
+      </Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    width: rw(344),
     height: rh(49),
     borderRadius: rw(100),
     flexDirection: "row",
@@ -51,7 +59,6 @@ const styles = StyleSheet.create({
   labelBtn: {
     fontFamily: Fonts.circularstdmedium500,
     fontSize: rf(16),
-    color: Colors.text,
   },
   withoutIcons: {
     paddingLeft: rw(0),

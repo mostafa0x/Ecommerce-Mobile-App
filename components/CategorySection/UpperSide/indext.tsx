@@ -8,7 +8,7 @@ export default function UpperSide() {
   return (
     <View style={styles.upperContiner}>
       <Text style={styles.title}>Category</Text>
-      <Link href={"/(tabs)/categories/Shose"} style={styles.secTitle}>
+      <Link href={"/categories/All"} style={styles.secTitle}>
         Show More
       </Link>
     </View>
