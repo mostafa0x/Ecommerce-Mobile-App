@@ -11,6 +11,7 @@ function CustomButton({
   icon,
   color = "secBg",
   widthSize = 344,
+  heightSize = 49,
   redirect,
 }: {
   lable: string;
@@ -18,6 +19,7 @@ function CustomButton({
   color: CustomBtnColorsType;
   redirect: "/" | "/categories/All";
   widthSize: number;
+  heightSize?: number;
 }) {
   const router = useRouter();
 
@@ -29,7 +31,7 @@ function CustomButton({
       onPress={handlePress}
       style={[
         styles.button,
-        { width: widthSize },
+        { width: rw(widthSize), height: rh(heightSize) },
         icon ? undefined : styles.withoutIcons,
         { backgroundColor: Colors[color] },
       ]}
@@ -49,7 +51,6 @@ function CustomButton({
 
 const styles = StyleSheet.create({
   button: {
-    height: rh(49),
     borderRadius: rw(100),
     flexDirection: "row",
     alignItems: "center",

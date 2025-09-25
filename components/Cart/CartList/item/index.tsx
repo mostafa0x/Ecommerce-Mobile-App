@@ -2,10 +2,10 @@ import MiniButton from "@/components/MiniButton";
 import { Colors, Fonts } from "@/constants";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { Image } from "expo-image";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function CartItem() {
+function CartItem() {
   return (
     <View style={styles.container}>
       <View style={styles.leftSide}>
@@ -20,10 +20,13 @@ export default function CartItem() {
       </View>
       <View style={styles.rightSide}>
         <Text adjustsFontSizeToFit numberOfLines={1} style={styles.labelPrice}>
-          $148323232
+          $1483
         </Text>
         <View style={styles.btnsContainer}>
           <MiniButton type="add" />
+          <Text numberOfLines={1} style={styles.lableCount}>
+            1
+          </Text>
           <MiniButton type="sub" />
         </View>
       </View>
@@ -68,9 +71,18 @@ const styles = StyleSheet.create({
     color: Colors.text,
     textAlign: "right",
   },
+  lableCount: {
+    fontSize: rf(16),
+    fontFamily: Fonts.circularstdmedium500,
+    color: Colors.text,
+    width: rw(20),
+    textAlign: "center",
+  },
   btnsContainer: {
     flexDirection: "row",
     gap: rw(8),
     justifyContent: "flex-end",
   },
 });
+
+export default memo(CartItem);

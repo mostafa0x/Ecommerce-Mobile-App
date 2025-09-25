@@ -7,7 +7,7 @@ import React, { useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import CartItem from "./item";
-
+import ListFooterCart from "./ListFooter";
 export default function CartList() {
   const renderItem = useCallback(() => {
     return <CartItem />;
@@ -33,6 +33,10 @@ export default function CartList() {
     );
   }, []);
 
+  const itemSeparator = useCallback(() => {
+    return <View style={styles.itemSeparator}></View>;
+  }, []);
+
   return (
     <View style={styles.container}>
       <Button
@@ -43,10 +47,14 @@ export default function CartList() {
         Remove All
       </Button>
       <FlashList
+        contentContainerStyle={styles.contentContainer}
+        data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
         numColumns={1}
-        data={[1]}
         renderItem={renderItem}
+        ItemSeparatorComponent={itemSeparator}
         ListEmptyComponent={listEmpty}
+        ListFooterComponent={<ListFooterCart />}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -81,5 +89,11 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.circularstdmedium500,
     fontSize: rf(16),
     color: Colors.text,
+  },
+  itemSeparator: {
+    height: rh(8),
+  },
+  contentContainer: {
+    paddingBottom: rh(160),
   },
 });
