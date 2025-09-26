@@ -94,6 +94,6 @@ const styles = StyleSheet.create({
     height: rh(8),
   },
   contentContainer: {
-    paddingBottom: rh(160),
+    paddingBottom: rh(120),
   },
 });

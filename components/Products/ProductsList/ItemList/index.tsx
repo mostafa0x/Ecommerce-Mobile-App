@@ -2,12 +2,17 @@ import FavIcon from "@/components/Icons/FavIcon";
 import { Colors, Fonts } from "@/constants";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { ImageBackground } from "expo-image";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import React, { memo } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function ItemListProduct() {
+function ItemListProduct() {
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      onPress={() => router.push("/Product/3")}
+      style={styles.container}
+    >
       <ImageBackground style={styles.imgContainer} source={undefined}>
         <FavIcon />
       </ImageBackground>
@@ -15,16 +20,16 @@ export default function ItemListProduct() {
         <Text numberOfLines={1} allowFontScaling style={styles.title}>
           Product Name
         </Text>
-        <Text
-          numberOfLines={1}
-          allowFontScaling
-          minimumFontScale={0.5}
-          style={styles.price}
-        >
-          $999999999
-        </Text>
+        <View style={styles.priceContainer}>
+          <Text numberOfLines={1} style={styles.price}>
+            $999999
+          </Text>
+          <Text numberOfLines={1} style={styles.priceDiscount}>
+            $2999
+          </Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -51,10 +56,25 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.circularstdmedium500,
     color: Colors.text,
   },
+  priceContainer: {
+    flexDirection: "row",
+    gap: rw(8),
+  },
   price: {
     fontSize: rf(18),
     fontFamily: Fonts.circularstdmedium500,
     color: Colors.text,
     fontWeight: "bold",
   },
+  priceDiscount: {
+    fontSize: rf(14),
+    fontFamily: Fonts.circularstdmedium500,
+    color: Colors.secText,
+    fontWeight: "bold",
+    textAlignVertical: "center",
+    width: rw(70),
+    textDecorationLine: "line-through",
+  },
 });
+
+export default memo(ItemListProduct);

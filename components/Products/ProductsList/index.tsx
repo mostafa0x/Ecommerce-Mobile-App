@@ -1,13 +1,11 @@
 import { ProductsListTypes } from "@/types/ProductsListTypes";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import ItemListProduct from "./ItemList";
 
-export default function ProductsList({
-  calledFrom = "Home",
-}: ProductsListTypes) {
+function ProductsList({ calledFrom = "Home" }: ProductsListTypes) {
   const fromHome = calledFrom === "Home";
   const renderItem = useCallback(() => {
     return <ItemListProduct />;
@@ -54,3 +52,5 @@ const styles = StyleSheet.create({
     height: rh(20),
   },
 });
+
+export default memo(ProductsList);
