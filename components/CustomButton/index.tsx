@@ -8,6 +8,7 @@ import GoogleIcon from "../Icons/GoogleIcon";
 
 function CustomButton({
   lable = "Empty",
+  secLable,
   icon,
   color = "secBg",
   widthSize = 344,
@@ -15,6 +16,7 @@ function CustomButton({
   redirect,
 }: {
   lable: string;
+  secLable?: string;
   icon?: CustomBtnIconsType;
   color: CustomBtnColorsType;
   redirect: "/" | "/categories/All";
@@ -31,8 +33,12 @@ function CustomButton({
       onPress={handlePress}
       style={[
         styles.button,
-        { width: rw(widthSize), height: rh(heightSize) },
-        icon ? undefined : styles.withoutIcons,
+        {
+          width: rw(widthSize),
+          height: rh(heightSize),
+          justifyContent: secLable ? "space-between" : "flex-start",
+        },
+        icon ? undefined : secLable ? undefined : styles.withoutIcons,
         { backgroundColor: Colors[color] },
       ]}
     >
@@ -45,6 +51,16 @@ function CustomButton({
       >
         {lable}
       </Text>
+      {secLable && (
+        <Text
+          style={[
+            styles.labelBtn,
+            { color: color == "secBg" ? Colors.text : "white" },
+          ]}
+        >
+          {secLable}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 }
@@ -55,15 +71,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: rw(53),
-    paddingLeft: rw(17.42),
+    paddingHorizontal: rw(17.42),
   },
   labelBtn: {
     fontFamily: Fonts.circularstdmedium500,
     fontSize: rf(16),
+    fontWeight: "bold",
   },
   withoutIcons: {
     paddingLeft: rw(0),
-
     justifyContent: "center",
   },
 });
