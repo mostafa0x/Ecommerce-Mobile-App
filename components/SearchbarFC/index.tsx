@@ -1,5 +1,5 @@
 import { Colors } from "@/constants";
-import useSerachHandler from "@/hooks/useSerachHandler";
+import { useFillterModalContext } from "@/context/FillterModalContext";
 import { rf, rh, rw } from "@/utils/dimensions";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -11,7 +11,7 @@ export default function SearchbarFC({
 }: {
   widthSize: number;
 }) {
-  const { q, setQ, Seraching } = useSerachHandler();
+  const { q, setQ, Seraching } = useFillterModalContext();
   return (
     <View style={styles.container}>
       <Searchbar

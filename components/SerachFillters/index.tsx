@@ -1,11 +1,11 @@
-import useSerachHandler from "@/hooks/useSerachHandler";
+import { useFillterModalContext } from "@/context/FillterModalContext";
 import { rw } from "@/utils/dimensions";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import SerachFillters_Item from "./Item";
 
 export default function SerachFillters() {
-  const { fillters, setFilterType } = useSerachHandler();
+  const { fillters, setFilterType } = useFillterModalContext();
   return (
     <View style={styles.container}>
       <SerachFillters_Item
