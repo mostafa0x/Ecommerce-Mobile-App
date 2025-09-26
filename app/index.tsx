@@ -9,7 +9,6 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
-
   useEffect(() => {
     return () => {};
   }, []);
@@ -20,7 +19,6 @@ export default function HomeScreen() {
       style={styles.container}
     >
       <Appbar />
-
       <View style={styles.serachbarContainer}>
         <SearchbarFC />
       </View>
@@ -36,7 +34,6 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {},
-
   serachbarContainer: {},
   categoryContainer: {},
   productsContianer: {
