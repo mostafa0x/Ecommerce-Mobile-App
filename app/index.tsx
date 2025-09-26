@@ -2,7 +2,7 @@ import Appbar from "@/components/Appbar";
 import CategorySection from "@/components/CategorySection";
 import ProductsSection from "@/components/Products/ProductsSection";
 import SearchbarFC from "@/components/SearchbarFC";
-import { rh } from "@/utils/dimensions";
+import { rh, rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
@@ -20,7 +20,7 @@ export default function HomeScreen() {
     >
       <Appbar />
       <View style={styles.serachbarContainer}>
-        <SearchbarFC />
+        <SearchbarFC widthSize={342} />
       </View>
       <View style={styles.categoryContainer}>
         <CategorySection />
@@ -34,7 +34,10 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {},
-  serachbarContainer: {},
+  serachbarContainer: {
+    paddingHorizontal: rw(24),
+    paddingVertical: rh(24),
+  },
   categoryContainer: {},
   productsContianer: {
     marginTop: rh(24),

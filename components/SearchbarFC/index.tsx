@@ -1,19 +1,26 @@
 import { Colors } from "@/constants";
+import useSerachHandler from "@/hooks/useSerachHandler";
 import { rf, rh, rw } from "@/utils/dimensions";
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import SearchIcon from "../Icons/SearchIcon";
 
-export default function SearchbarFC() {
-  const [q, setQ] = useState("");
+export default function SearchbarFC({
+  widthSize = 342,
+}: {
+  widthSize: number;
+}) {
+  const { q, setQ, Seraching } = useSerachHandler();
   return (
     <View style={styles.container}>
       <Searchbar
         inputStyle={styles.serachbarInput}
-        style={styles.serachbar}
+        style={[styles.serachbar, { width: rw(widthSize) }]}
         value={q}
         onChangeText={setQ}
+        onIconPress={Seraching}
+        onSubmitEditing={Seraching}
         placeholder="Search"
         placeholderTextColor={Colors.text}
         icon={() => (
@@ -27,13 +34,9 @@ export default function SearchbarFC() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: rw(24),
-    paddingVertical: rh(24),
-  },
+  container: {},
   serachbar: {
     alignItems: "center",
-    width: rw(342),
     height: rh(40),
     backgroundColor: Colors.secBg,
   },
