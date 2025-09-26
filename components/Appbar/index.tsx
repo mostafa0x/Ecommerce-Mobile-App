@@ -10,7 +10,7 @@ export default function Appbar() {
   const router = useRouter();
   return (
     <View style={styles.appBarContainer}>
-      <AvatarFC />
+      <AvatarFC size={40} />
       <Text style={styles.appbarTxt}>FoFo Store</Text>
       <TouchableOpacity onPress={() => router.push("/Cart")}>
         <CartIcon />

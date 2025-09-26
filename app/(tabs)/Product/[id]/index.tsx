@@ -33,7 +33,7 @@ export default function ProductScreen() {
         <View style={styles.btnBuy}>
           <CustomButton
             lable={"$100"}
-            secLable="sasa"
+            secLable="Add to Bag"
             color={"praimry"}
             redirect={"/"}
             widthSize={342}
