@@ -1,5 +1,6 @@
 import ArrowDownIcon from "@/components/Icons/ArrowDownIcon";
 import { Colors, Fonts } from "@/constants";
+import { TypeFillter } from "@/types/FilltersType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import React, { memo } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
@@ -8,14 +9,19 @@ function SerachFillters_Item({
   label = "Price",
   icon = false,
   active = false,
+  setFilterType,
 }: {
-  label: string;
+  label: TypeFillter;
   icon?: boolean;
   active: boolean;
+  setFilterType: (label: TypeFillter) => void;
 }) {
   return (
-    <TouchableOpacity style={[styles.container, active && styles.active]}>
-      <Text style={[styles.label, active && styles.active_label]}>Price</Text>
+    <TouchableOpacity
+      onPress={() => setFilterType(label)}
+      style={[styles.container, active && styles.active]}
+    >
+      <Text style={[styles.label, active && styles.active_label]}>{label}</Text>
       {icon && <ArrowDownIcon />}
     </TouchableOpacity>
   );

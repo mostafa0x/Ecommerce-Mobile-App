@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: rw(24),
   },
   fillterContentContainer: {
-    paddingBottom: rh(300),
+    paddingBottom: rh(450),
   },
   itemSeparator: {
     width: rw(12),

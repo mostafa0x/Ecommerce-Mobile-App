@@ -1,9 +1,11 @@
 import BackButton from "@/components/BackButton/BackButton";
 import FilltersByCategories from "@/components/FilltersByCategories";
+import FilltersModel from "@/components/Models/FilltersModel";
 import ProductsList from "@/components/Products/ProductsList";
 import SearchbarFC from "@/components/SearchbarFC";
 import SerachFillters from "@/components/SerachFillters";
 import { Colors, Fonts } from "@/constants";
+import useSerachHandler from "@/hooks/useSerachHandler";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
@@ -12,6 +14,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function SerachScreen() {
   const { q } = useLocalSearchParams();
   const words = Array.isArray(q) ? q[0] : q;
+  const { fillters } = useSerachHandler();
   return (
     <View style={styles.container}>
       <View style={styles.appbarContainer}>
@@ -33,6 +36,7 @@ export default function SerachScreen() {
         </View>
       )}
       <Text>{words}</Text>
+      <FilltersModel />
     </View>
   );
 }
@@ -51,13 +55,14 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontWeight: "bold",
     marginBottom: rh(14),
+    paddingHorizontal: rw(24),
   },
   listCategory: {
     marginTop: rh(34),
   },
   labelResults: {
     fontFamily: Fonts.circularstdmedium500,
-    fontSize: rf(12),
+    fontSize: rf(14),
     color: Colors.text,
   },
   serachingContainer: {
