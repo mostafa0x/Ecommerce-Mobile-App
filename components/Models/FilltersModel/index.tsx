@@ -1,12 +1,13 @@
 import { useFillterModalContext } from "@/context/FillterModalContext";
-import { rw } from "@/utils/dimensions";
+import { rh, rw } from "@/utils/dimensions";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import HeaderModel from "./HeaderModel";
+import PriceView from "./PriceView";
 
 export default function FilltersModel() {
-  const { modalRef, OpenModel, CloseModel, fillters } =
+  const { modalRef, ClaerFillters, CloseModel, fillters } =
     useFillterModalContext();
 
   return (
@@ -19,11 +20,22 @@ export default function FilltersModel() {
       closeOnOverlayTap={false}
       panGestureEnabled={false}
     >
-      <HeaderModel label={fillters.type} CloseModel={CloseModel} />
+      <HeaderModel
+        label={fillters.type}
+        CloseModel={CloseModel}
+        ClaerFillters={ClaerFillters}
+      />
+      <View style={styles.contantContainer}>
+        {fillters.type === "Price" && <PriceView />}
+      </View>
     </Modalize>
   );
 }
 
 const styles = StyleSheet.create({
   model: {},
+  contantContainer: {
+    paddingHorizontal: rw(24),
+    paddingTop: rh(26),
+  },
 });

@@ -8,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { StyleSheet } from "react-native";
 import { Modalize } from "react-native-modalize";
 
 const FillterModalContext = createContext<FillterContextTypes>({
@@ -26,6 +25,7 @@ const FillterModalContext = createContext<FillterContextTypes>({
   CloseModel: () => {},
   setFilterType: (label: string) => {},
   Seraching: () => {},
+  ClaerFillters: () => {},
 });
 
 export const useFillterModalContext = () => useContext(FillterModalContext);
@@ -60,11 +60,34 @@ export default function FillterModalContextProvider({
 
   const setFilterType = useCallback(
     (newType: TypeFillter) => {
-      setFillters({ ...fillters, type: newType });
+      setFillters((prev) => ({ ...prev, type: newType }));
       OpenModel();
     },
     [fillters, OpenModel]
   );
+
+  const ClaerFillters = useCallback(() => {
+    setFillters((prev) =>
+      prev.type === "Price"
+        ? {
+            ...prev,
+            price: {
+              to: 0,
+              from: 0,
+            },
+          }
+        : prev.type === "on Sale"
+        ? {
+            ...prev,
+            onSale: false,
+          }
+        : {
+            ...prev,
+            category: "All",
+          }
+    );
+    CloseModel();
+  }, []);
 
   return (
     <FillterModalContext.Provider
@@ -78,11 +101,10 @@ export default function FillterModalContextProvider({
         fillters,
         setFillters,
         Seraching,
+        ClaerFillters,
       }}
     >
       {children}
     </FillterModalContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({});

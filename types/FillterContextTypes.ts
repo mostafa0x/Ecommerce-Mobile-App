@@ -10,4 +10,5 @@ export interface FillterContextTypes {
   CloseModel: () => void;
   setFilterType: (label: TypeFillter) => void;
   Seraching: () => void;
+  ClaerFillters: () => void;
 }

@@ -7,13 +7,17 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 function HeaderModel({
   label = "empty",
   CloseModel,
+  ClaerFillters,
 }: {
   label: string;
   CloseModel: () => void;
+  ClaerFillters: () => void;
 }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.labelClaer}>Claer</Text>
+      <TouchableOpacity onPress={ClaerFillters}>
+        <Text style={styles.labelClaer}>Claer</Text>
+      </TouchableOpacity>
       <Text style={styles.labelFillter}>{label}</Text>
       <TouchableOpacity onPress={CloseModel}>
         <CloseIcon />
