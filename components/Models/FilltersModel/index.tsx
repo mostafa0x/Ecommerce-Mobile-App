@@ -43,5 +43,6 @@ const styles = StyleSheet.create({
   contantContainer: {
     paddingHorizontal: rw(24),
     paddingTop: rh(26),
+    height: "70%",
   },
 });

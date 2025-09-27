@@ -22,7 +22,8 @@ function CustomButton({
   icon?: CustomBtnIconsType;
   activeIcon?: boolean;
   color: CustomBtnColorsType;
-  redirect: "/" | "/categories/All";
+  redirect?: "/" | "/categories/All";
+  metod?: "Fillter/sortBy";
   widthSize: number;
   heightSize?: number;
 }) {

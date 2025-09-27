@@ -1,10 +1,12 @@
 import AllContextProviders from "@/context/AllContextProviders";
+import { store } from "@/lib/store";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { Provider } from "react-redux";
 
 export default function RootLayout() {
   const [isloadedFonts] = useFonts({
@@ -15,20 +17,22 @@ export default function RootLayout() {
     return null;
   }
   return (
-    <AllContextProviders>
-      <GestureHandlerRootView>
-        <SafeAreaProvider>
-          <SafeAreaView style={{ flex: 1 }}>
-            <Stack
-              screenOptions={{
-                headerShown: false,
-                contentStyle: { backgroundColor: "transparent" },
-              }}
-            />
-          </SafeAreaView>
-          <StatusBar style="dark" />
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </AllContextProviders>
+    <Provider store={store}>
+      <AllContextProviders>
+        <GestureHandlerRootView>
+          <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1 }}>
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                  contentStyle: { backgroundColor: "transparent" },
+                }}
+              />
+            </SafeAreaView>
+            <StatusBar style="dark" />
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
+      </AllContextProviders>
+    </Provider>
   );
 }
