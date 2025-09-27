@@ -11,4 +11,5 @@ export interface FillterContextTypes {
   setFilterType: (label: TypeFillter) => void;
   Seraching: () => void;
   ClaerFillters: () => void;
+  setFillterCategory: (categoryName: string) => void;
 }

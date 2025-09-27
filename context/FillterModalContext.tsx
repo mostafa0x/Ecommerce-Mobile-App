@@ -27,6 +27,7 @@ const FillterModalContext = createContext<FillterContextTypes>({
   setFilterType: (label: string) => {},
   Seraching: () => {},
   ClaerFillters: () => {},
+  setFillterCategory: () => {},
 });
 
 export const useFillterModalContext = () => useContext(FillterModalContext);
@@ -90,6 +91,10 @@ export default function FillterModalContextProvider({
     CloseModel();
   }, []);
 
+  const setFillterCategory = useCallback((categoryName: string) => {
+    setFillters((prev) => ({ ...prev, category: categoryName }));
+  }, []);
+
   useEffect(() => {
     console.log(fillters);
 
@@ -109,6 +114,7 @@ export default function FillterModalContextProvider({
         setFillters,
         Seraching,
         ClaerFillters,
+        setFillterCategory,
       }}
     >
       {children}
