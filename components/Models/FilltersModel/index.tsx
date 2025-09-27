@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import HeaderModel from "./HeaderModel";
 import PriceView from "./PriceView";
+import SortByView from "./SortByView";
 
 export default function FilltersModel() {
   const { modalRef, ClaerFillters, CloseModel, fillters } =
@@ -27,6 +28,7 @@ export default function FilltersModel() {
       />
       <View style={styles.contantContainer}>
         {fillters.type === "Price" && <PriceView />}
+        {fillters.type === "Sort by" && <SortByView />}
       </View>
     </Modalize>
   );

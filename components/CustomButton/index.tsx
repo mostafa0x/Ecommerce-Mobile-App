@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import React, { memo } from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import GoogleIcon from "../Icons/GoogleIcon";
+import TrueIcon from "../Icons/TrueIcon";
 
 function CustomButton({
   lable = "Empty",
@@ -14,10 +15,12 @@ function CustomButton({
   widthSize = 344,
   heightSize = 49,
   redirect,
+  activeIcon,
 }: {
   lable: string;
   secLable?: string;
   icon?: CustomBtnIconsType;
+  activeIcon?: boolean;
   color: CustomBtnColorsType;
   redirect: "/" | "/categories/All";
   widthSize: number;
@@ -36,9 +39,14 @@ function CustomButton({
         {
           width: rw(widthSize),
           height: rh(heightSize),
-          justifyContent: secLable ? "space-between" : "flex-start",
+          justifyContent:
+            secLable || activeIcon ? "space-between" : "flex-start",
         },
-        icon ? undefined : secLable ? undefined : styles.withoutIcons,
+        icon
+          ? undefined
+          : secLable || activeIcon
+          ? undefined
+          : styles.withoutIcons,
         { backgroundColor: Colors[color] },
       ]}
     >
@@ -61,6 +69,7 @@ function CustomButton({
           {secLable}
         </Text>
       )}
+      {activeIcon && <TrueIcon />}
     </TouchableOpacity>
   );
 }

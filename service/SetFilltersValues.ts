@@ -6,16 +6,25 @@ export function SetFilltersValues(
   setFillters: React.Dispatch<React.SetStateAction<FilltersType>>,
   value: string
 ) {
-  if (type === "fillter/min") {
-    const numericValue = value === "" ? "0" : value.replace(/[^0-9]/g, "");
+  if (type === "fillter/min" || type === "fillter/max") {
+    const numericValue = parseInt(value.replace(/[^0-9]/g, ""));
+    const finalValue = isNaN(numericValue) ? 0 : numericValue;
     console.log(numericValue);
 
-    return setFillters((perv) => ({
-      ...perv,
-      price: {
-        from: parseInt(numericValue),
-        to: perv.price.to,
-      },
-    }));
+    return type === "fillter/min"
+      ? setFillters((perv) => ({
+          ...perv,
+          price: {
+            from: finalValue,
+            to: perv.price.to,
+          },
+        }))
+      : setFillters((perv) => ({
+          ...perv,
+          price: {
+            from: perv.price.from,
+            to: finalValue,
+          },
+        }));
   }
 }

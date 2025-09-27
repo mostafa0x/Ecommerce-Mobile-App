@@ -5,6 +5,7 @@ import React, {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -88,6 +89,12 @@ export default function FillterModalContextProvider({
     );
     CloseModel();
   }, []);
+
+  useEffect(() => {
+    console.log(fillters);
+
+    return () => {};
+  }, [fillters]);
 
   return (
     <FillterModalContext.Provider
