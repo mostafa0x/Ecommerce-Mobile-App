@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   labelPrice: {
     fontFamily: Fonts.circularstdmedium500,
     color: Colors.praimry,
-    fontSize: rf(16),
+    fontSize: rf(18),
     fontWeight: "bold",
   },
   labelDiscount: {

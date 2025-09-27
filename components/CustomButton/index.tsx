@@ -1,6 +1,5 @@
 import { Colors, Fonts } from "@/constants";
 import { useAppDispatch } from "@/hooks/useRedux";
-import { addToCount } from "@/lib/store/CategoriesSlice";
 import { CustomBtnColorsType, CustomBtnIconsType } from "@/types/CustomBtnType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
@@ -18,6 +17,7 @@ function CustomButton({
   heightSize = 49,
   redirect,
   activeIcon,
+  setFillterCategory,
 }: {
   lable: string;
   secLable?: string;
@@ -28,12 +28,17 @@ function CustomButton({
   metod?: "Fillter/sortBy";
   widthSize: number;
   heightSize?: number;
+  setFillterCategory?: (categoryName: string) => void;
 }) {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const handlePress = () => {
-    redirect ? router.push(redirect) : dispatch(addToCount(1));
+    redirect
+      ? router.push(redirect)
+      : setFillterCategory
+      ? setFillterCategory(lable)
+      : undefined;
   };
   return (
     <TouchableOpacity

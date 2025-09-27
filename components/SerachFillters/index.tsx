@@ -19,7 +19,7 @@ export default function SerachFillters() {
 
       <SerachFillters_Item
         label="Sort by"
-        icon={false}
+        icon={true}
         active={fillters.category !== "All"}
         setFilterType={setFilterType}
       />

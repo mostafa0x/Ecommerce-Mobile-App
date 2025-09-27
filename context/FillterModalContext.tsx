@@ -93,11 +93,11 @@ export default function FillterModalContextProvider({
 
   const setFillterCategory = useCallback((categoryName: string) => {
     setFillters((prev) => ({ ...prev, category: categoryName }));
+    CloseModel();
   }, []);
 
   useEffect(() => {
     console.log(fillters);
-
     return () => {};
   }, [fillters]);
 

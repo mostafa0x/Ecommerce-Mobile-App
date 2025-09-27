@@ -16,7 +16,7 @@ export default function CategoryList() {
       <FlashList
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        data={Array(10)}
+        data={[1, 2, 3, 4, 5, 6, 7]}
         renderItem={renderItem}
         horizontal
         ItemSeparatorComponent={ItemSeparator}

@@ -15,7 +15,7 @@ function HeaderModel({
 }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={ClaerFillters}>
+      <TouchableOpacity style={styles.btnClaer} onPress={ClaerFillters}>
         <Text style={styles.labelClaer}>Claer</Text>
       </TouchableOpacity>
       <Text style={styles.labelFillter}>{label}</Text>
@@ -44,6 +44,12 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: rf(24),
     fontWeight: "bold",
+  },
+  btnClaer: {
+    width: rw(52),
+    height: rh(32),
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

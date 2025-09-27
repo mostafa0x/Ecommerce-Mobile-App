@@ -29,7 +29,7 @@ function SerachFillters_Item({
 
 const styles = StyleSheet.create({
   container: {
-    width: rw(67),
+    width: "auto",
     height: rh(27),
     backgroundColor: Colors.secBg,
     borderRadius: rw(100),

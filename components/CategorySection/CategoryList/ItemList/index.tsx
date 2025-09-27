@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
     height: rh(90),
     alignItems: "center",
     gap: rh(5),
-    marginRight: rw(13.25),
   },
 
   title: {
