@@ -5,7 +5,9 @@ import { StyleSheet, View } from "react-native";
 import SerachFillters_Item from "./Item";
 
 export default function SerachFillters() {
-  const { fillters, setFilterType } = useFillterModalContext();
+  const { fillters, setFilterType, CloseModel, modalRef } =
+    useFillterModalContext();
+
   return (
     <View style={styles.container}>
       <SerachFillters_Item
@@ -14,12 +16,7 @@ export default function SerachFillters() {
         active={fillters.price.from !== 0 || fillters.price.to !== 0}
         setFilterType={setFilterType}
       />
-      <SerachFillters_Item
-        label="on Sale"
-        icon={false}
-        active={fillters.onSale}
-        setFilterType={setFilterType}
-      />
+
       <SerachFillters_Item
         label="Sort by"
         icon={false}

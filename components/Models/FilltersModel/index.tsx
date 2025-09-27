@@ -1,6 +1,6 @@
 import { useFillterModalContext } from "@/context/FillterModalContext";
 import { rh, rw } from "@/utils/dimensions";
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { Modalize } from "react-native-modalize";
 import HeaderModel from "./HeaderModel";
@@ -11,6 +11,11 @@ export default function FilltersModel() {
   const { modalRef, ClaerFillters, CloseModel, fillters } =
     useFillterModalContext();
 
+  useEffect(() => {
+    CloseModel();
+    return () => {};
+  }, []);
+
   return (
     <Modalize
       ref={modalRef}
@@ -18,7 +23,6 @@ export default function FilltersModel() {
       modalHeight={rw(424)}
       withHandle={false}
       modalStyle={styles.model}
-      closeOnOverlayTap={false}
       panGestureEnabled={false}
     >
       <HeaderModel

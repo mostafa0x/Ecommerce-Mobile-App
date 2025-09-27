@@ -37,7 +37,7 @@ export default function FillterModalContextProvider({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const modalRef = useRef<Modalize>(null);
+  let modalRef = useRef<Modalize>(null);
 
   const [q, setQ] = useState("");
   const [fillters, setFillters] = useState<FilltersType>({
@@ -62,9 +62,9 @@ export default function FillterModalContextProvider({
   const setFilterType = useCallback(
     (newType: TypeFillter) => {
       setFillters((prev) => ({ ...prev, type: newType }));
-      OpenModel();
+      modalRef.current?.open();
     },
-    [fillters, OpenModel]
+    [fillters]
   );
 
   const ClaerFillters = useCallback(() => {

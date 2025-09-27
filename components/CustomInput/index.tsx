@@ -4,7 +4,7 @@ import { GetFilltersValues } from "@/service/GetFilltersValues";
 import { SetFilltersValues } from "@/service/SetFilltersValues";
 import { CustomInputType } from "@/types/CustomInputType";
 import { rf, rh, rw } from "@/utils/dimensions";
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
 function CustomInput({
@@ -13,12 +13,9 @@ function CustomInput({
   type,
 }: CustomInputType) {
   const { fillters, setFillters } = useFillterModalContext();
-  const [value, setValue] = useState("");
   const va = GetFilltersValues(type, fillters);
   function changeValuesHandler(text: string) {
     SetFilltersValues(type, setFillters, text);
-    // inputType === "number" ? setValue(numericValue) : setValue(text);
-    // inputType === "number" ? setValue(numericValue) : setValue(text);
   }
 
   return (
