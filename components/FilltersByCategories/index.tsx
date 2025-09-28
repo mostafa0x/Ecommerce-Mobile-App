@@ -1,12 +1,13 @@
+import { FilltersByCategoriesType } from "@/types/FilltersByCategoriesType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import FilltersButton from "./Button";
 
-export default function FilltersByCategories() {
+function FilltersByCategories({ isLoading }: FilltersByCategoriesType) {
   const renderItem = useCallback(() => {
-    return <FilltersButton />;
+    return <FilltersButton isLoading={isLoading} />;
   }, []);
 
   const ItemSeparator = useCallback(() => {
@@ -15,7 +16,7 @@ export default function FilltersByCategories() {
   return (
     <View style={styles.container}>
       <FlashList
-        data={[1, 2, 3, 4, 5, 5, 6, 7, 8, 9, 2, 4]}
+        data={isLoading ? [1, 2, 3] : [1, 2, 3, 4, 2, 4]}
         renderItem={renderItem}
         numColumns={1}
         contentContainerStyle={styles.contentContainer}
@@ -40,3 +41,5 @@ const styles = StyleSheet.create({
     height: rh(8),
   },
 });
+
+export default memo(FilltersByCategories);

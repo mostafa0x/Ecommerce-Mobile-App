@@ -21,7 +21,7 @@ export default function Category() {
       </View>
       <View style={styles.btnsContainer}></View>
       {category == "All" ? (
-        <FilltersByCategories />
+        <FilltersByCategories isLoading />
       ) : (
         <ProductsList calledFrom="fillter" />
       )}

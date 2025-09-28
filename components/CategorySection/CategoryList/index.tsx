@@ -17,7 +17,7 @@ function CategoryList({ isLoading }: CategoryListType) {
       <FlashList
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        data={[1, 2, 3, 4, 5, 6, 7]}
+        data={isLoading ? [1, 2, 3, 4, 5] : [1, 2, 3, 4, 5, 6, 7]}
         renderItem={renderItem}
         horizontal
         ItemSeparatorComponent={ItemSeparator}

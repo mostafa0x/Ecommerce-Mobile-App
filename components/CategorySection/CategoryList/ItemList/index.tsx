@@ -14,14 +14,19 @@ export default function ItemListCategory({
   const router = useRouter();
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/categories/${title}`)}
+      onPress={() => !isLoading && router.push(`/categories/${title}`)}
       style={styles.container}
     >
-      {isLoading ? <Skeleton width={100} height={100} /> : null}
-      <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
-      <Text numberOfLines={1} style={styles.title}>
-        {title}
-      </Text>
+      {isLoading ? (
+        <Skeleton width={rw(56)} radius={"round"} height={rw(56)} />
+      ) : (
+        <>
+          <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
+          <Text numberOfLines={1} style={styles.title}>
+            {title}
+          </Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 }
