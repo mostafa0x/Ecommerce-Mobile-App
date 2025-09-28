@@ -11,7 +11,7 @@ function ProductsSection() {
         <UpperSIde title="Top Selling" />
       </View>
       <View style={styles.list}>
-        <ProductsList calledFrom="Home" />
+        <ProductsList isLoading calledFrom="Home" />
       </View>
     </View>
   );

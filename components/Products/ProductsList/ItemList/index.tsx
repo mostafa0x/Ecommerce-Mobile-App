@@ -1,35 +1,46 @@
 import FavIcon from "@/components/Icons/FavIcon";
 import { Colors, Fonts } from "@/constants";
+import { ItemListProductType } from "@/types/ItemListProductType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { ImageBackground } from "expo-image";
 import { useRouter } from "expo-router";
+import { Skeleton } from "moti/skeleton";
 import React, { memo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-function ItemListProduct() {
+function ItemListProduct({ isLoading }: ItemListProductType) {
   const router = useRouter();
   return (
-    <TouchableOpacity
-      onPress={() => router.push("/Product/3")}
-      style={styles.container}
-    >
-      <ImageBackground style={styles.imgContainer} source={undefined}>
-        <FavIcon />
-      </ImageBackground>
-      <View style={styles.txtContainer}>
-        <Text numberOfLines={1} allowFontScaling style={styles.title}>
-          Product Name
-        </Text>
-        <View style={styles.priceContainer}>
-          <Text numberOfLines={1} style={styles.price}>
-            $999999
-          </Text>
-          <Text numberOfLines={1} style={styles.priceDiscount}>
-            $2999
-          </Text>
+    <>
+      {isLoading ? (
+        <View style={styles.skeletonContainer}>
+          <Skeleton width={styles.container.width} height={rh(250)} />
+          <Skeleton width={styles.container.width} height={rh(20)} />
         </View>
-      </View>
-    </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          onPress={() => !isLoading && router.push("/Product/3")}
+          style={styles.container}
+        >
+          <ImageBackground style={styles.imgContainer} source={undefined}>
+            <FavIcon />
+          </ImageBackground>
+          <View style={styles.txtContainer}>
+            <Text numberOfLines={1} allowFontScaling style={styles.title}>
+              Product Name
+            </Text>
+            <View style={styles.priceContainer}>
+              <Text numberOfLines={1} style={styles.price}>
+                $999999
+              </Text>
+              <Text numberOfLines={1} style={styles.priceDiscount}>
+                $2999
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      )}
+    </>
   );
 }
 
@@ -74,6 +85,9 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     width: rw(70),
     textDecorationLine: "line-through",
+  },
+  skeletonContainer: {
+    gap: rh(10),
   },
 });
 

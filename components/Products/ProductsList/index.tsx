@@ -5,10 +5,10 @@ import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import ItemListProduct from "./ItemList";
 
-function ProductsList({ calledFrom = "Home" }: ProductsListTypes) {
+function ProductsList({ calledFrom = "Home", isLoading }: ProductsListTypes) {
   const fromHome = calledFrom === "Home";
   const renderItem = useCallback(() => {
-    return <ItemListProduct />;
+    return <ItemListProduct isLoading={isLoading} />;
   }, []);
   const ItemSeparator = useCallback(() => {
     return <View style={styles.itemSeparator}></View>;
