@@ -1,12 +1,13 @@
+import { CategoryListType } from "@/types/CategoryListType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import ItemListCategory from "./ItemList";
 
-export default function CategoryList() {
+function CategoryList({ isLoading }: CategoryListType) {
   const renderItem = useCallback(() => {
-    return <ItemListCategory title="Category Name" />;
+    return <ItemListCategory title="Category Name" isLoading={isLoading} />;
   }, []);
   const ItemSeparator = useCallback(() => {
     return <View style={styles.itemSeparatorContainer}></View>;
@@ -41,3 +42,5 @@ const styles = StyleSheet.create({
     width: rw(13),
   },
 });
+
+export default memo(CategoryList);

@@ -2,17 +2,22 @@ import { Colors, Fonts } from "@/constants";
 import { ItemListCategoryType } from "@/types/ItemListCategoryType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useRouter } from "expo-router";
+import { Skeleton } from "moti/skeleton";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-paper";
 
-export default function ItemListCategory({ title }: ItemListCategoryType) {
+export default function ItemListCategory({
+  title,
+  isLoading,
+}: ItemListCategoryType) {
   const router = useRouter();
   return (
     <TouchableOpacity
       onPress={() => router.push(`/categories/${title}`)}
       style={styles.container}
     >
+      {isLoading ? <Skeleton width={100} height={100} /> : null}
       <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
       <Text numberOfLines={1} style={styles.title}>
         {title}

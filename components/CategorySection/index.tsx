@@ -11,7 +11,7 @@ export default function CategorySection() {
         <UpperSide />
       </View>
       <View style={styles.list}></View>
-      <CategoryList />
+      <CategoryList isLoading={true} />
     </View>
   );
 }
