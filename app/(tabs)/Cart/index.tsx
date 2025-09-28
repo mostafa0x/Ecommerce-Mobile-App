@@ -13,7 +13,7 @@ export default function CartScreen() {
         <Text style={styles.titleAppbar}>Cart</Text>
       </View>
       <View style={styles.list}>
-        <CartList />
+        <CartList isLoading />
       </View>
     </View>
   );

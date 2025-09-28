@@ -1,5 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import { Colors, Fonts } from "@/constants";
+import { CartListType } from "@/types/CartListType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
@@ -8,9 +9,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import CartItem from "./item";
 import ListFooterCart from "./ListFooter";
-export default function CartList() {
+export default function CartList({ isLoading }: CartListType) {
   const renderItem = useCallback(() => {
-    return <CartItem />;
+    return <CartItem isLoading />;
   }, []);
 
   const listEmpty = useCallback(() => {
@@ -38,22 +39,24 @@ export default function CartList() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={() => console.log("x")}
-        labelStyle={styles.lableBtn}
-        style={styles.btn}
-      >
-        Remove All
-      </Button>
+    <View style={[styles.container, isLoading && styles.loadingSpace]}>
+      {!isLoading && (
+        <Button
+          onPress={() => console.log("x")}
+          labelStyle={styles.lableBtn}
+          style={styles.btn}
+        >
+          Remove All
+        </Button>
+      )}
       <FlashList
         contentContainerStyle={styles.contentContainer}
-        data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+        data={isLoading ? [1, 2, 3] : [1, 2, 3, 4, 5, 6, 7, 8, 9]}
         numColumns={1}
         renderItem={renderItem}
         ItemSeparatorComponent={itemSeparator}
         ListEmptyComponent={listEmpty}
-        ListFooterComponent={<ListFooterCart />}
+        ListFooterComponent={isLoading ? null : <ListFooterCart />}
         showsVerticalScrollIndicator={false}
       />
     </View>
@@ -95,5 +98,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingBottom: rh(120),
+  },
+  loadingSpace: {
+    marginTop: rh(45),
   },
 });

@@ -1,36 +1,51 @@
 import MiniButton from "@/components/MiniButton";
 import { Colors, Fonts } from "@/constants";
+import { CartItemType } from "@/types/CartItemType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { Image } from "expo-image";
+import { Skeleton } from "moti/skeleton";
 import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-function CartItem() {
+function CartItem({ isLoading }: CartItemType) {
   return (
-    <View style={styles.container}>
-      <View style={styles.leftSide}>
-        <Image
-          style={styles.img}
-          contentFit="contain"
-          source={require("@/assets/images/cart.png")}
+    <>
+      {isLoading ? (
+        <Skeleton
+          width={styles.container.width}
+          height={styles.container.height}
         />
-        <Text numberOfLines={1} style={styles.labelName}>
-          sasasasasasasaasadasdasdasdaaaaaaaaaaaaaaa
-        </Text>
-      </View>
-      <View style={styles.rightSide}>
-        <Text adjustsFontSizeToFit numberOfLines={1} style={styles.labelPrice}>
-          $1483
-        </Text>
-        <View style={styles.btnsContainer}>
-          <MiniButton type="add" />
-          <Text numberOfLines={1} style={styles.lableCount}>
-            1
-          </Text>
-          <MiniButton type="sub" />
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.leftSide}>
+            <Image
+              style={styles.img}
+              contentFit="contain"
+              source={require("@/assets/images/cart.png")}
+            />
+            <Text numberOfLines={1} style={styles.labelName}>
+              sasasasasasasaasadasdasdasdaaaaaaaaaaaaaaa
+            </Text>
+          </View>
+          <View style={styles.rightSide}>
+            <Text
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              style={styles.labelPrice}
+            >
+              $1483
+            </Text>
+            <View style={styles.btnsContainer}>
+              <MiniButton type="add" />
+              <Text numberOfLines={1} style={styles.lableCount}>
+                1
+              </Text>
+              <MiniButton type="sub" />
+            </View>
+          </View>
         </View>
-      </View>
-    </View>
+      )}
+    </>
   );
 }
 
