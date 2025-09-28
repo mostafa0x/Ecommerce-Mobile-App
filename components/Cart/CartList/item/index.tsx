@@ -12,6 +12,7 @@ function CartItem({ isLoading }: CartItemType) {
     <>
       {isLoading ? (
         <Skeleton
+          colorMode="light"
           width={styles.container.width}
           height={styles.container.height}
         />

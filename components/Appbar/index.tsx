@@ -12,7 +12,7 @@ export default function Appbar() {
   return (
     <View style={styles.appBarContainer}>
       <TouchableOpacity onPress={() => router.push("/Setting")}>
-        <AvatarFC size={40} />
+        <AvatarFC isLoading size={40} />
       </TouchableOpacity>
       <Text style={styles.appbarTxt}>FoFo Store</Text>
       <TouchableOpacity onPress={() => router.push("/Cart")}>

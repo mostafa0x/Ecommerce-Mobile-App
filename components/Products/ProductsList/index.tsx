@@ -18,7 +18,7 @@ function ProductsList({ calledFrom = "Home", isLoading }: ProductsListTypes) {
     <View style={[styles.constainer, !fromHome && styles.fillterContainer]}>
       <FlashList
         style={styles.list}
-        data={[1, 2, 3, 4, 5, 6, 7]}
+        data={isLoading ? [1, 2, 3] : [1, 2, 3, 4, 5, 6, 7]}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
         horizontal={fromHome}

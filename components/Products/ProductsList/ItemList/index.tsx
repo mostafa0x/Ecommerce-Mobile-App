@@ -14,8 +14,16 @@ function ItemListProduct({ isLoading }: ItemListProductType) {
     <>
       {isLoading ? (
         <View style={styles.skeletonContainer}>
-          <Skeleton width={styles.container.width} height={rh(250)} />
-          <Skeleton width={styles.container.width} height={rh(20)} />
+          <Skeleton
+            colorMode="light"
+            width={styles.container.width}
+            height={rh(250)}
+          />
+          <Skeleton
+            colorMode="light"
+            width={styles.container.width}
+            height={rh(20)}
+          />
         </View>
       ) : (
         <TouchableOpacity

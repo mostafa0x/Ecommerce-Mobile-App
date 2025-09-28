@@ -13,6 +13,7 @@ export default function FilltersButton({
     <>
       {isLoading ? (
         <Skeleton
+          colorMode="light"
           width={styles.container.width}
           height={styles.container.height}
         />

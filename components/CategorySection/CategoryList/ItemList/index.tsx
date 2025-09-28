@@ -13,21 +13,26 @@ export default function ItemListCategory({
 }: ItemListCategoryType) {
   const router = useRouter();
   return (
-    <TouchableOpacity
-      onPress={() => !isLoading && router.push(`/categories/${title}`)}
-      style={styles.container}
-    >
+    <>
       {isLoading ? (
-        <Skeleton width={rw(56)} radius={"round"} height={rw(56)} />
+        <Skeleton
+          colorMode="light"
+          width={rw(56)}
+          radius={"round"}
+          height={rw(56)}
+        />
       ) : (
-        <>
+        <TouchableOpacity
+          onPress={() => !isLoading && router.push(`/categories/${title}`)}
+          style={styles.container}
+        >
           <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
           <Text numberOfLines={1} style={styles.title}>
             {title}
           </Text>
-        </>
+        </TouchableOpacity>
       )}
-    </TouchableOpacity>
+    </>
   );
 }
 

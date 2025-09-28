@@ -25,12 +25,12 @@ export default function SerachScreen() {
             <SerachFillters />
             <Text style={styles.labelResults}>56 Results Found</Text>
           </View>
-          <ProductsList calledFrom={"fillter"} />
+          <ProductsList isLoading calledFrom={"fillter"} />
         </View>
       ) : (
         <View style={styles.listCategory}>
           <Text style={styles.title}>Shop by Categories</Text>
-          <FilltersByCategories />
+          <FilltersByCategories isLoading />
         </View>
       )}
       <Text>{words}</Text>
