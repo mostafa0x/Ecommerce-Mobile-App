@@ -1,13 +1,15 @@
+import useCategories from "@/hooks/useCategories";
 import { loadingCatgeroyList } from "@/service/loadingValusesForLists";
 import { OneCategoryType } from "@/types/CategoriesType";
-import { FilltersByCategoriesType } from "@/types/FilltersByCategoriesType";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import FilltersButton from "./Button";
 
-function FilltersByCategories({ isLoading, data }: FilltersByCategoriesType) {
+function FilltersByCategories() {
+  const { categories, isLoading } = useCategories();
+
   const renderItem = useCallback(({ item }: { item: OneCategoryType }) => {
     return item?.name === "All" ? null : (
       <FilltersButton isLoading={isLoading} item={item} />
@@ -20,7 +22,7 @@ function FilltersByCategories({ isLoading, data }: FilltersByCategoriesType) {
   return (
     <View style={styles.container}>
       <FlashList
-        data={isLoading ? loadingCatgeroyList : data}
+        data={isLoading ? loadingCatgeroyList : categories}
         renderItem={renderItem}
         numColumns={1}
         contentContainerStyle={styles.contentContainer}

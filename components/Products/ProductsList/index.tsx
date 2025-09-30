@@ -1,15 +1,23 @@
-import { ProductsListTypes } from "@/types/ProductsListTypes";
+import { loadingPrdouctsList } from "@/service/loadingValusesForLists";
+import { ProductsListTypes, ProductType } from "@/types/ProductsListTypes";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import ItemListProduct from "./ItemList";
 
-function ProductsList({ calledFrom = "Home", isLoading }: ProductsListTypes) {
+function ProductsList({
+  calledFrom = "Home",
+  isLoading,
+  data,
+}: ProductsListTypes) {
   const fromHome = calledFrom === "Home";
-  const renderItem = useCallback(() => {
-    return <ItemListProduct isLoading={isLoading} />;
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: ProductType }) => {
+      return <ItemListProduct isLoading={isLoading} item={item} />;
+    },
+    [isLoading]
+  );
   const ItemSeparator = useCallback(() => {
     return <View style={styles.itemSeparator}></View>;
   }, []);
@@ -18,9 +26,9 @@ function ProductsList({ calledFrom = "Home", isLoading }: ProductsListTypes) {
     <View style={[styles.constainer, !fromHome && styles.fillterContainer]}>
       <FlashList
         style={styles.list}
-        data={isLoading ? [1, 2, 3] : [1, 2, 3, 4, 5, 6, 7]}
+        data={isLoading ? loadingPrdouctsList : data}
         renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => String(item?._id ? item.id : index)}
         horizontal={fromHome}
         numColumns={fromHome ? 1 : 2}
         contentContainerStyle={[

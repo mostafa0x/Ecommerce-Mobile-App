@@ -2,7 +2,7 @@ import BackButton from "@/components/BackButton/BackButton";
 import FilltersByCategories from "@/components/FilltersByCategories";
 import ProductsList from "@/components/Products/ProductsList";
 import { Colors, Fonts } from "@/constants";
-import useCategories from "@/hooks/useCategories";
+import useProducts from "@/hooks/useProducts";
 import { CategoriesType } from "@/types/CategoriesType";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
@@ -12,7 +12,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function Category() {
   const { id } = useLocalSearchParams();
   const category = (Array.isArray(id) ? id[0] : id) as CategoriesType;
-  const { categories, isLoading } = useCategories();
+  const { products, isLoading } = useProducts(category);
   return (
     <View style={styles.container}>
       <View style={styles.upperSection}>
@@ -23,9 +23,13 @@ export default function Category() {
       </View>
       <View style={styles.btnsContainer}></View>
       {category == "All" ? (
-        <FilltersByCategories isLoading={isLoading} data={categories} />
+        <FilltersByCategories />
       ) : (
-        <ProductsList isLoading={isLoading} calledFrom="fillter" />
+        <ProductsList
+          data={products}
+          isLoading={isLoading}
+          calledFrom="fillter"
+        />
       )}
     </View>
   );

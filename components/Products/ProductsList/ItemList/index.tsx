@@ -8,7 +8,7 @@ import { Skeleton } from "moti/skeleton";
 import React, { memo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-function ItemListProduct({ isLoading }: ItemListProductType) {
+function ItemListProduct({ isLoading, item }: ItemListProductType) {
   const router = useRouter();
   return (
     <>
@@ -27,22 +27,22 @@ function ItemListProduct({ isLoading }: ItemListProductType) {
         </View>
       ) : (
         <TouchableOpacity
-          onPress={() => !isLoading && router.push("/Product/3")}
+          onPress={() => !isLoading && router.push(`/Product/${item.id}`)}
           style={styles.container}
         >
-          <ImageBackground style={styles.imgContainer} source={undefined}>
+          <ImageBackground style={styles.imgContainer} source={item?.images[0]}>
             <FavIcon />
           </ImageBackground>
           <View style={styles.txtContainer}>
             <Text numberOfLines={1} allowFontScaling style={styles.title}>
-              Product Name
+              {item?.title}
             </Text>
             <View style={styles.priceContainer}>
               <Text numberOfLines={1} style={styles.price}>
-                $999999
+                ${item.priceAfterDis}
               </Text>
               <Text numberOfLines={1} style={styles.priceDiscount}>
-                $2999
+                ${item.price}
               </Text>
             </View>
           </View>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     height: rh(281),
     backgroundColor: Colors.secBg,
     borderRadius: rw(8),
+    overflow: "hidden",
   },
   imgContainer: {
     alignItems: "flex-end",

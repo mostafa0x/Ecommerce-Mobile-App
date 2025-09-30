@@ -1,3 +1,5 @@
+import { ProductType } from "@/types/ProductsListTypes";
+
 export const loadingCatgeroyList = [
   {
     name: "test",
@@ -25,5 +27,77 @@ export const loadingCatgeroyList = [
     _id: "3",
     updatedAt: "",
     creationAt: "",
+  },
+];
+
+export const loadingPrdouctsList: ProductType[] = [
+  {
+    category: {
+      id: 1,
+      name: "Updated Category Name",
+      slug: "updated-category-name",
+      image: "",
+      creationAt: "",
+      updatedAt: "2025-03-13T17:34:51.000Z",
+      _id: "",
+    },
+    _id: "67d36f682e353b49a84144fc",
+    id: 8,
+    title: "loading",
+    slug: "classic-red-jogger-sweatpants-edit-one",
+    price: 100,
+    description: "",
+    images: [],
+    creationAt: "2025-03-13T15:36:56.000Z",
+    updatedAt: "2025-03-13T21:43:32.000Z",
+    stock: 0,
+    DisPercentage: 25,
+    priceAfterDis: 75,
+  },
+  {
+    category: {
+      id: 1,
+      name: "Updated Category Name",
+      slug: "updated-category-name",
+      image: "",
+      creationAt: "",
+      updatedAt: "2025-03-13T17:34:51.000Z",
+      _id: "",
+    },
+    _id: "67d36f682e353b49a84144fc",
+    id: 1,
+    title: "loading",
+    slug: "classic-red-jogger-sweatpants-edit-one",
+    price: 100,
+    description: "",
+    images: [],
+    creationAt: "2025-03-13T15:36:56.000Z",
+    updatedAt: "2025-03-13T21:43:32.000Z",
+    stock: 0,
+    DisPercentage: 25,
+    priceAfterDis: 75,
+  },
+  {
+    category: {
+      id: 1,
+      name: "Updated Category Name",
+      slug: "updated-category-name",
+      image: "",
+      creationAt: "",
+      updatedAt: "2025-03-13T17:34:51.000Z",
+      _id: "",
+    },
+    _id: "67d36f682e353b49a84144fc",
+    id: 2,
+    title: "loading",
+    slug: "classic-red-jogger-sweatpants-edit-one",
+    price: 100,
+    description: "",
+    images: [],
+    creationAt: "2025-03-13T15:36:56.000Z",
+    updatedAt: "2025-03-13T21:43:32.000Z",
+    stock: 0,
+    DisPercentage: 25,
+    priceAfterDis: 75,
   },
 ];
