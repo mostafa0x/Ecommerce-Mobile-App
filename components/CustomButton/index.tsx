@@ -51,6 +51,7 @@ function CustomButton({
           justifyContent:
             secLable || activeIcon ? "space-between" : "flex-start",
         },
+        (icon || secLable) && styles.padding,
         icon
           ? undefined
           : secLable || activeIcon
@@ -89,7 +90,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: rw(53),
-    paddingHorizontal: rw(17.42),
   },
   labelBtn: {
     fontFamily: Fonts.circularstdmedium500,
@@ -99,6 +99,9 @@ const styles = StyleSheet.create({
   withoutIcons: {
     paddingLeft: rw(0),
     justifyContent: "center",
+  },
+  padding: {
+    paddingHorizontal: rw(17.42),
   },
 });
 

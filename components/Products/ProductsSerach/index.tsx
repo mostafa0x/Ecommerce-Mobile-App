@@ -13,10 +13,14 @@ function ProductsSerach({ q }: { q: string }) {
   return (
     <View style={styles.serachingContainer}>
       <View style={styles.fillterContainer}>
-        <SerachFillters />
-        <Text style={styles.labelResults}>
-          {false ? "" : `${products.length} Results Found`}
-        </Text>
+        {products.length > 0 ? (
+          <>
+            <SerachFillters />
+            <Text style={styles.labelResults}>
+              {false ? "" : `${products.length} Results Found`}
+            </Text>
+          </>
+        ) : null}
       </View>
       <ProductsList
         data={products}

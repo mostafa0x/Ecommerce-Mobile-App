@@ -4,6 +4,7 @@ import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
 import React, { memo, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
+import EmptyList from "./EmptyList";
 import ItemListProduct from "./ItemList";
 
 function ProductsList({
@@ -22,6 +23,10 @@ function ProductsList({
     return <View style={styles.itemSeparator}></View>;
   }, []);
 
+  const emptyList = useCallback(() => {
+    return <EmptyList />;
+  }, []);
+
   return (
     <View style={[styles.constainer, !fromHome && styles.fillterContainer]}>
       <FlashList
@@ -38,6 +43,7 @@ function ProductsList({
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparator}
+        ListEmptyComponent={emptyList}
       />
     </View>
   );
