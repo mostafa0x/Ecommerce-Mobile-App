@@ -1,5 +1,6 @@
 import AllContextProviders from "@/context/AllContextProviders";
 import { store } from "@/lib/store";
+import AllProviders from "@/providers/AllProviders";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -18,21 +19,23 @@ export default function RootLayout() {
   }
   return (
     <Provider store={store}>
-      <AllContextProviders>
-        <GestureHandlerRootView>
-          <SafeAreaProvider>
-            <SafeAreaView style={{ flex: 1 }}>
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  contentStyle: { backgroundColor: "transparent" },
-                }}
-              />
-            </SafeAreaView>
-            <StatusBar style="dark" />
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </AllContextProviders>
+      <AllProviders>
+        <AllContextProviders>
+          <GestureHandlerRootView>
+            <SafeAreaProvider>
+              <SafeAreaView style={{ flex: 1 }}>
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                    contentStyle: { backgroundColor: "transparent" },
+                  }}
+                />
+              </SafeAreaView>
+              <StatusBar style="dark" />
+            </SafeAreaProvider>
+          </GestureHandlerRootView>
+        </AllContextProviders>
+      </AllProviders>
     </Provider>
   );
 }

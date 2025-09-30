@@ -2,6 +2,7 @@ import BackButton from "@/components/BackButton/BackButton";
 import FilltersByCategories from "@/components/FilltersByCategories";
 import ProductsList from "@/components/Products/ProductsList";
 import { Colors, Fonts } from "@/constants";
+import useCategories from "@/hooks/useCategories";
 import { useAppSelector } from "@/hooks/useRedux";
 import { CategoriesType } from "@/types/CategoriesType";
 import { rf, rh, rw } from "@/utils/dimensions";
@@ -13,6 +14,7 @@ export default function Category() {
   const { id } = useLocalSearchParams();
   const category = (Array.isArray(id) ? id[0] : id) as CategoriesType;
   const { categories } = useAppSelector((state) => state.MainReducer);
+  const {} = useCategories();
   return (
     <View style={styles.container}>
       <View style={styles.upperSection}>
