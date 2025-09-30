@@ -10,6 +10,7 @@ import { Avatar } from "react-native-paper";
 export default function ItemListCategory({
   title,
   isLoading,
+  item,
 }: ItemListCategoryType) {
   const router = useRouter();
   return (
@@ -23,12 +24,16 @@ export default function ItemListCategory({
         />
       ) : (
         <TouchableOpacity
-          onPress={() => !isLoading && router.push(`/categories/${title}`)}
+          onPress={() => !isLoading && router.push(`/categories/${item.name}`)}
           style={styles.container}
         >
-          <Avatar.Image size={rw(56)} source={{ uri: undefined }} />
+          <Avatar.Image
+            style={styles.img}
+            size={rw(56)}
+            source={{ uri: item.image }}
+          />
           <Text numberOfLines={1} style={styles.title}>
-            {title}
+            {item.name}
           </Text>
         </TouchableOpacity>
       )}
@@ -49,5 +54,9 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: rf(12),
     width: rw(54),
+    textAlign: "center",
+  },
+  img: {
+    backgroundColor: Colors.secBg,
   },
 });

@@ -60,8 +60,8 @@ const initialState = {
   ],
 };
 
-const CategoriesSlice = createSlice({
-  name: "CategoriesSlice",
+const MainSlice = createSlice({
+  name: "MainSlice",
   initialState,
   reducers: {
     addToCount: (state, action) => {
@@ -71,6 +71,6 @@ const CategoriesSlice = createSlice({
   },
 });
 
-export const CategoriesReducer = CategoriesSlice.reducer;
+export const MainReducer = MainSlice.reducer;
 
-export const { addToCount } = CategoriesSlice.actions;
+export const { addToCount } = MainSlice.actions;

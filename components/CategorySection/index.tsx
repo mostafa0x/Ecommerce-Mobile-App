@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/hooks/useRedux";
 import { rh, rw } from "@/utils/dimensions";
 import React from "react";
 import { StyleSheet, View } from "react-native";
@@ -5,13 +6,14 @@ import CategoryList from "./CategoryList";
 import UpperSide from "./UpperSide/indext";
 
 export default function CategorySection() {
+  const { categories } = useAppSelector((state) => state.MainReducer);
   return (
     <View style={styles.container}>
       <View style={styles.upperContainer}>
         <UpperSide />
       </View>
       <View style={styles.list}></View>
-      <CategoryList isLoading={true} />
+      <CategoryList isLoading={false} data={categories} />
     </View>
   );
 }
