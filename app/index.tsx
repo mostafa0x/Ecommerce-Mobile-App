@@ -27,6 +27,7 @@ export default function HomeScreen() {
       </View>
       <View style={styles.productsContianer}>
         <ProductsSection />
+        <ProductsSection />
       </View>
     </ScrollView>
   );

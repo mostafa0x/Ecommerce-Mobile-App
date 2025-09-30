@@ -36,6 +36,7 @@ function ProductsList({
           !fromHome && styles.fillterContentContainer,
         ]}
         showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         ItemSeparatorComponent={ItemSeparator}
       />
     </View>

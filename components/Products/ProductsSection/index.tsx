@@ -6,7 +6,7 @@ import ProductsList from "../ProductsList";
 import UpperSIde from "./UpperSIde";
 
 function ProductsSection() {
-  const { products, isLoading } = useProducts("All");
+  const { products, isLoading } = useProducts("Miscellaneous");
   return (
     <View style={styles.container}>
       <View style={styles.uppderContainer}>

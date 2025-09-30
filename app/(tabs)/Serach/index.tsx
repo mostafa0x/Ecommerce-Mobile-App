@@ -1,9 +1,8 @@
 import BackButton from "@/components/BackButton/BackButton";
 import FilltersByCategories from "@/components/FilltersByCategories";
 import FilltersModel from "@/components/Models/FilltersModel";
-import ProductsList from "@/components/Products/ProductsList";
+import ProductsSerach from "@/components/Products/ProductsSerach";
 import SearchbarFC from "@/components/SearchbarFC";
-import SerachFillters from "@/components/SerachFillters";
 import { Colors, Fonts } from "@/constants";
 import { rf, rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
@@ -13,6 +12,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function SerachScreen() {
   const { q } = useLocalSearchParams();
   const words = Array.isArray(q) ? q[0] : q;
+
   return (
     <View style={styles.container}>
       <View style={styles.appbarContainer}>
@@ -20,17 +20,11 @@ export default function SerachScreen() {
         <SearchbarFC widthSize={293} />
       </View>
       {q ? (
-        <View style={styles.serachingContainer}>
-          <View style={styles.fillterContainer}>
-            <SerachFillters />
-            <Text style={styles.labelResults}>56 Results Found</Text>
-          </View>
-          <ProductsList isLoading calledFrom={"fillter"} />
-        </View>
+        <ProductsSerach q={words} />
       ) : (
         <View style={styles.listCategory}>
           <Text style={styles.title}>Shop by Categories</Text>
-          <FilltersByCategories isLoading={false} />
+          <FilltersByCategories />
         </View>
       )}
       <Text>{words}</Text>
@@ -57,19 +51,5 @@ const styles = StyleSheet.create({
   },
   listCategory: {
     marginTop: rh(34),
-  },
-  labelResults: {
-    fontFamily: Fonts.circularstdmedium500,
-    fontSize: rf(14),
-    color: Colors.text,
-  },
-  serachingContainer: {
-    marginTop: rh(0),
-  },
-  fillterContainer: {
-    paddingHorizontal: rw(24),
-    paddingTop: rh(24),
-    paddingBottom: rh(16),
-    gap: rh(17),
   },
 });
