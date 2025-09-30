@@ -3,13 +3,20 @@ import { useQuery } from "@tanstack/react-query";
 async function fetchData() {
   try {
     const res = await axiosClint.get("/Categories");
-    console.log(res.data.categories);
-    return res.data;
+    console.log();
+
+    return res.data.categories;
   } catch (err: any) {
+    console.log(err);
+
     throw err;
   }
 }
 
 export default function useCategories() {
-  return useQuery({ queryKey: ["Categories"], queryFn: fetchData });
+  const { data: categories = [], ...rest } = useQuery({
+    queryKey: ["Categories"],
+    queryFn: fetchData,
+  });
+  return { categories, ...rest };
 }

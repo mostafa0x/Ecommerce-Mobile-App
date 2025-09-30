@@ -8,11 +8,14 @@ import { StyleSheet, View } from "react-native";
 import ItemListCategory from "./ItemList";
 
 function CategoryList({ isLoading, data }: CategoryListType) {
-  const renderItem = useCallback(({ item }: { item: OneCategoryType }) => {
-    return item.name === "All" ? null : (
-      <ItemListCategory item={item} isLoading={isLoading} />
-    );
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: OneCategoryType }) => {
+      return item.name === "All" ? null : (
+        <ItemListCategory item={item} isLoading={isLoading} />
+      );
+    },
+    [isLoading]
+  );
   const ItemSeparator = useCallback(() => {
     return <View style={styles.itemSeparatorContainer}></View>;
   }, []);

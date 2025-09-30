@@ -24,7 +24,7 @@ function FilltersByCategories({ isLoading, data }: FilltersByCategoriesType) {
         renderItem={renderItem}
         numColumns={1}
         contentContainerStyle={styles.contentContainer}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => String(item?.id ? item.id : index)}
         ItemSeparatorComponent={ItemSeparator}
         showsVerticalScrollIndicator={false}
       />
