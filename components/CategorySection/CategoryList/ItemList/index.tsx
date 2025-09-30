@@ -8,7 +8,6 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Avatar } from "react-native-paper";
 
 export default function ItemListCategory({
-  title,
   isLoading,
   item,
 }: ItemListCategoryType) {

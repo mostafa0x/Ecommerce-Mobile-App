@@ -30,7 +30,7 @@ export default function SerachScreen() {
       ) : (
         <View style={styles.listCategory}>
           <Text style={styles.title}>Shop by Categories</Text>
-          <FilltersByCategories isLoading />
+          <FilltersByCategories isLoading={false} />
         </View>
       )}
       <Text>{words}</Text>

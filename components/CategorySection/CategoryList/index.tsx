@@ -1,3 +1,4 @@
+import { loadingCatgeroyList } from "@/service/loadingValusesForLists";
 import { OneCategoryType } from "@/types/CategoriesType";
 import { CategoryListType } from "@/types/CategoryListType";
 import { rh, rw } from "@/utils/dimensions";
@@ -9,11 +10,7 @@ import ItemListCategory from "./ItemList";
 function CategoryList({ isLoading, data }: CategoryListType) {
   const renderItem = useCallback(({ item }: { item: OneCategoryType }) => {
     return item.name === "All" ? null : (
-      <ItemListCategory
-        title="Category Name"
-        item={item}
-        isLoading={isLoading}
-      />
+      <ItemListCategory item={item} isLoading={isLoading} />
     );
   }, []);
   const ItemSeparator = useCallback(() => {
@@ -24,7 +21,7 @@ function CategoryList({ isLoading, data }: CategoryListType) {
       <FlashList
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
-        data={isLoading ? Array(2) : data ?? []}
+        data={isLoading ? loadingCatgeroyList : data ?? []}
         renderItem={renderItem}
         horizontal
         ItemSeparatorComponent={ItemSeparator}
