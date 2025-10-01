@@ -1,4 +1,4 @@
-import useCategories from "@/hooks/useCategories";
+import { useAppSelector } from "@/hooks/useRedux";
 import { loadingCatgeroyList } from "@/service/loadingValusesForLists";
 import { OneCategoryType } from "@/types/CategoriesType";
 import { rh, rw } from "@/utils/dimensions";
@@ -8,11 +8,14 @@ import { StyleSheet, View } from "react-native";
 import FilltersButton from "./Button";
 
 function FilltersByCategories() {
-  const { categories, isLoading } = useCategories();
+  // const { categories, isLoading } = useCategories();
+  const { categories, isLoadingCategories } = useAppSelector(
+    (state) => state.MainReducer
+  );
 
   const renderItem = useCallback(({ item }: { item: OneCategoryType }) => {
     return item?.name === "All" ? null : (
-      <FilltersButton isLoading={isLoading} item={item} />
+      <FilltersButton isLoading={isLoadingCategories} item={item} />
     );
   }, []);
 
@@ -22,7 +25,7 @@ function FilltersByCategories() {
   return (
     <View style={styles.container}>
       <FlashList
-        data={isLoading ? loadingCatgeroyList : categories}
+        data={isLoadingCategories ? loadingCatgeroyList : categories}
         renderItem={renderItem}
         numColumns={1}
         contentContainerStyle={styles.contentContainer}

@@ -7,11 +7,11 @@ export type CategoriesType =
   | "Miscellaneous";
 
 export interface OneCategoryType {
-  _id: string;
+  _id?: string;
   id: number;
   name: string;
-  slug: string;
+  slug?: string;
   image: string;
-  creationAt: string;
-  updatedAt: string;
+  creationAt?: string;
+  updatedAt?: string;
 }

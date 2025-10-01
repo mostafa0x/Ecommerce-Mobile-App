@@ -4,7 +4,7 @@ import fillterByPrice from "@/service/fillterByPrice";
 import { CategoriesType } from "@/types/CategoriesType";
 import { FilltersType } from "@/types/FilltersType";
 import { ProductType } from "@/types/ProductsListTypes";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 async function fetchData() {
   try {
@@ -55,25 +55,13 @@ export default function useProducts(
       return data.filter((product) => product.category.name === category);
     }
     return [];
-    //   return q
-    //     ? fillters
-    //       ? data.filter(
-    //           (product) =>
-    //             product.title
-    //               .toLocaleLowerCase()
-    //               .includes(q.toLocaleLowerCase()) &&
-    //             fillters.category !== "All" &&
-    //             product.category.name === fillters.category &&
-    //             product.priceAfterDis > fillters.price.from &&
-    //             fillters.price.to > 0 &&
-    //             product.priceAfterDis <= fillters.price.to
-    //         )
-    //       : data.filter((product) =>
-    //           product.title.toLocaleLowerCase().includes(q.toLocaleLowerCase())
-    //         )
-    //     : [];
-    // } else return data.filter((product) => product.category.name === category);
   }, [data, category, q]);
 
-  return { products, ...rest };
+  const qx = useQueryClient();
+
+  function ref() {
+    qx.fetchQuery({ queryKey: ["Products"] });
+  }
+
+  return { products, ...rest, ref };
 }

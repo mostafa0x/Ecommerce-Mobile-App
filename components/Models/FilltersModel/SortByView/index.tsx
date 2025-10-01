@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import { useFillterModalContext } from "@/context/FillterModalContext";
-import useCategories from "@/hooks/useCategories";
+import { useAppSelector } from "@/hooks/useRedux";
 import { OneCategoryType } from "@/types/CategoriesType";
 import { rh } from "@/utils/dimensions";
 import React from "react";
@@ -8,7 +8,8 @@ import { ScrollView, StyleSheet } from "react-native";
 
 export default function SortByView() {
   const { fillters, setFillterCategory } = useFillterModalContext();
-  const { categories } = useCategories();
+  // const { categories } = useCategories();
+  const { categories } = useAppSelector((state) => state.MainReducer);
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}

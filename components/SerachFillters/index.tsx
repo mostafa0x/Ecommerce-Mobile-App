@@ -1,17 +1,12 @@
 import { useFillterModalContext } from "@/context/FillterModalContext";
 import { rw } from "@/utils/dimensions";
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import SerachFillters_Item from "./Item";
 
-export default function SerachFillters({ refetch }: { refetch: () => void }) {
+export default function SerachFillters() {
   const { fillters, setFilterType, CloseModel, modalRef } =
     useFillterModalContext();
-
-  useEffect(() => {
-    refetch();
-    return () => {};
-  }, [fillters]);
 
   return (
     <View style={styles.container}>

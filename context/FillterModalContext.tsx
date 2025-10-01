@@ -1,3 +1,6 @@
+import { useAppSelector } from "@/hooks/useRedux";
+import fillterByCategory from "@/service/fillterByCategory";
+import fillterByPrice from "@/service/fillterByPrice";
 import { FillterContextTypes } from "@/types/FillterContextTypes";
 import { FilltersType, TypeFillter } from "@/types/FilltersType";
 import { usePathname, useRouter } from "expo-router";
@@ -6,6 +9,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -20,6 +24,7 @@ const FillterModalContext = createContext<FillterContextTypes>({
     onSale: false,
   },
   modalRef: null,
+  fillterProducts: [],
   setQ: () => {},
   setFillters: () => {},
   OpenModel: () => {},
@@ -40,7 +45,7 @@ export default function FillterModalContextProvider({
   const router = useRouter();
   const pathName = usePathname();
   let modalRef = useRef<Modalize>(null);
-
+  const { products } = useAppSelector((state) => state.MainReducer);
   const [q, setQ] = useState("");
   const [fillters, setFillters] = useState<FilltersType>({
     price: { from: 0, to: 0 },
@@ -104,16 +109,49 @@ export default function FillterModalContextProvider({
     return () => {};
   }, [fillters]);
 
+  function fillter() {}
+
+  const fillterProducts = useMemo(() => {
+    if (products.length <= 0) return [];
+    if ("All" === "All") {
+      if (q) {
+        if (fillters) {
+          return products.filter((product) => {
+            const sortByCategory = fillterByCategory(fillters, product);
+            const sortByPrice = fillterByPrice(fillters, product);
+            return (
+              product.title
+                .toLocaleLowerCase()
+                .includes(q.toLocaleLowerCase()) &&
+              sortByPrice &&
+              sortByCategory
+            );
+          });
+        } else {
+          return products.filter((product) =>
+            product.title.toLocaleLowerCase().includes(q.toLocaleLowerCase())
+          );
+        }
+      }
+    } else {
+      console.log("x");
+
+      // return products.filter((product) => product.category.name === category);
+    }
+    return [];
+  }, [products, q, fillter]);
+
   return (
     <FillterModalContext.Provider
       value={{
         q,
-        setQ,
         modalRef,
+        fillters,
+        fillterProducts,
         OpenModel,
+        setQ,
         CloseModel,
         setFilterType,
-        fillters,
         setFillters,
         Seraching,
         ClaerFillters,

@@ -22,6 +22,7 @@ export default function ProductScreen() {
         {true ? (
           <View style={styles.sliderSkeleton}>
             <Skeleton
+              colorMode="light"
               width={styles.sliderSkeleton.width}
               height={styles.sliderSkeleton.height}
             />
@@ -32,22 +33,22 @@ export default function ProductScreen() {
       </View>
       <View style={styles.secContainer}>
         <View>
-          <Skeleton show>
+          <Skeleton colorMode="light" show>
             <InfoProduct />
           </Skeleton>
         </View>
         <View>
-          <Skeleton show>
+          <Skeleton colorMode="light" show>
             <DescriptionProduct />
           </Skeleton>
         </View>
         <View>
-          <Skeleton show>
+          <Skeleton colorMode="light" show>
             <Shipping_Returns />
           </Skeleton>
         </View>
         <View style={styles.btnBuy}>
-          <Skeleton show>
+          <Skeleton colorMode="light" show>
             <CustomButton
               lable={"$100"}
               secLable="Add to Bag"

@@ -8,16 +8,17 @@ export interface ProductsListTypes {
 
 export interface ProductType {
   category: OneCategoryType;
-  _id: string;
+  _id?: string;
   id: number;
   title: string;
-  slug: string;
+  slug?: string;
   price: number;
   description: string;
   images: string[];
-  creationAt: string;
-  updatedAt: string;
+  creationAt?: string;
+  updatedAt?: string;
   stock: number;
   DisPercentage: number;
   priceAfterDis: number;
+  _V?: number;
 }

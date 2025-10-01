@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  count: 0,
   categories: [
     {
       _id: "67d827a52e353b49a8414538",
@@ -58,6 +57,7 @@ const initialState = {
       updatedAt: "2025-03-16T16:55:44.000Z",
     },
   ],
+  isLoadingCategories: false,
   products: [
     {
       category: {
@@ -1330,19 +1330,15 @@ const initialState = {
       __v: 0,
     },
   ],
+  isLoadingProducts: false,
 };
 
 const MainSlice = createSlice({
   name: "MainSlice",
   initialState,
-  reducers: {
-    addToCount: (state, action) => {
-      state.count += 1;
-      console.log(state.count);
-    },
-  },
+  reducers: {},
 });
 
 export const MainReducer = MainSlice.reducer;
 
-export const { addToCount } = MainSlice.actions;
+export const {} = MainSlice.actions;
