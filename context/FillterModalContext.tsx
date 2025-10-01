@@ -1,6 +1,6 @@
 import { FillterContextTypes } from "@/types/FillterContextTypes";
 import { FilltersType, TypeFillter } from "@/types/FilltersType";
-import { useRouter } from "expo-router";
+import { usePathname, useRouter } from "expo-router";
 import React, {
   createContext,
   useCallback,
@@ -38,6 +38,7 @@ export default function FillterModalContextProvider({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathName = usePathname();
   let modalRef = useRef<Modalize>(null);
 
   const [q, setQ] = useState("");
@@ -49,7 +50,9 @@ export default function FillterModalContextProvider({
   });
 
   const Seraching = () => {
-    router.push({ pathname: "/Serach" as any, params: { q } });
+    pathName !== "/Serach"
+      ? router.push({ pathname: "/Serach" as any, params: { q } })
+      : router.replace({ pathname: "/Serach" as any, params: { q } });
   };
 
   const OpenModel = useCallback(() => {

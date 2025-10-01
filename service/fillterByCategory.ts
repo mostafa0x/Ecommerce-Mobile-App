@@ -5,7 +5,10 @@ export default function fillterByCategory(
   fillters: FilltersType,
   product: ProductType
 ) {
-  return fillters.category === "All"
-    ? product.category.name !== fillters.category
-    : product.category.name === fillters.category;
+  const sort =
+    fillters.category === "All"
+      ? product.category.name !== fillters.category
+      : product.category.name === fillters.category;
+
+  return sort;
 }

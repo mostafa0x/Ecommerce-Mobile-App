@@ -9,11 +9,11 @@ import ProductsList from "../ProductsList";
 
 function ProductsSerach({ q }: { q: string }) {
   const { fillters } = useFillterModalContext();
-  const { products, isLoading } = useProducts("All", fillters, q);
+  const { products, isLoading, refetch } = useProducts("All", fillters, q);
   return (
     <View style={styles.serachingContainer}>
       <View style={styles.fillterContainer}>
-        <SerachFillters />
+        <SerachFillters refetch={refetch} />
         {products.length > 0 ? (
           <>
             <Text style={styles.labelResults}>

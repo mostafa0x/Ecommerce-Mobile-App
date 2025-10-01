@@ -6,6 +6,7 @@ import Shipping_Returns from "@/components/Products/Details/Shipping_Returns";
 import Slider from "@/components/Slider";
 import { rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
+import { Skeleton } from "moti/skeleton";
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
@@ -18,27 +19,44 @@ export default function ProductScreen() {
         <BackButton />
       </View>
       <View style={styles.sliderContainer}>
-        <Slider />
+        {true ? (
+          <View style={styles.sliderSkeleton}>
+            <Skeleton
+              width={styles.sliderSkeleton.width}
+              height={styles.sliderSkeleton.height}
+            />
+          </View>
+        ) : (
+          <Slider />
+        )}
       </View>
       <View style={styles.secContainer}>
         <View>
-          <InfoProduct />
+          <Skeleton show>
+            <InfoProduct />
+          </Skeleton>
         </View>
         <View>
-          <DescriptionProduct />
+          <Skeleton show>
+            <DescriptionProduct />
+          </Skeleton>
         </View>
         <View>
-          <Shipping_Returns />
+          <Skeleton show>
+            <Shipping_Returns />
+          </Skeleton>
         </View>
         <View style={styles.btnBuy}>
-          <CustomButton
-            lable={"$100"}
-            secLable="Add to Bag"
-            color={"praimry"}
-            redirect={"/"}
-            widthSize={342}
-            heightSize={52}
-          />
+          <Skeleton show>
+            <CustomButton
+              lable={"$100"}
+              secLable="Add to Bag"
+              color={"praimry"}
+              redirect={"/"}
+              widthSize={342}
+              heightSize={52}
+            />
+          </Skeleton>
         </View>
       </View>
     </ScrollView>
@@ -61,6 +79,11 @@ const styles = StyleSheet.create({
   },
   sliderContainer: {
     marginTop: rh(24),
+  },
+  sliderSkeleton: {
+    width: rw(340),
+    height: rh(100),
+    paddingHorizontal: rw(24),
   },
   btnBuy: {
     marginTop: rh(50),
