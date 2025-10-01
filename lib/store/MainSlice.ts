@@ -1,6 +1,7 @@
+import { MainSliceType } from "@/types/MainSliceType";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: MainSliceType = {
   categories: [
     {
       _id: "67d827a52e353b49a8414538",
@@ -1331,14 +1332,25 @@ const initialState = {
     },
   ],
   isLoadingProducts: false,
+  prdouctById: undefined,
+  isLoadingPrdouctById: true,
 };
 
 const MainSlice = createSlice({
   name: "MainSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    getProductById: (state, action) => {
+      if (!action.payload) return (state.prdouctById = undefined);
+      const id = action.payload;
+      state.isLoadingPrdouctById = true;
+      const productById = state.products.find((product) => product.id === id);
+      state.prdouctById = productById;
+      state.isLoadingPrdouctById = false;
+    },
+  },
 });
 
 export const MainReducer = MainSlice.reducer;
 
-export const {} = MainSlice.actions;
+export const { getProductById } = MainSlice.actions;

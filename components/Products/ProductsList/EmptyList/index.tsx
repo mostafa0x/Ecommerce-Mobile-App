@@ -5,9 +5,15 @@ import { Image } from "expo-image";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function EmptyList() {
+export default function EmptyList({
+  calledFrom,
+}: {
+  calledFrom: "Home" | "fillter";
+}) {
+  console.log(calledFrom);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, calledFrom !== "fillter" && styles.space]}>
       <Image
         style={styles.img}
         source={require("@/assets/images/searchIcon.png")}
@@ -32,6 +38,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: rh(147),
     gap: rh(24),
+    width: rw(360),
+  },
+  space: {
+    paddingTop: rh(50),
   },
   img: {
     width: rw(100),

@@ -54,12 +54,11 @@ export default function FillterModalContextProvider({
     type: "on Sale",
   });
 
-  const Seraching = () => {
+  const Seraching = useCallback(() => {
     pathName !== "/Serach"
       ? router.push({ pathname: "/Serach" as any, params: { q } })
-      : router.replace({ pathname: "/Serach" as any, params: { q } });
-  };
-
+      : router.push({ pathname: "/Serach" as any, params: { q } });
+  }, [[pathName]]);
   const OpenModel = useCallback(() => {
     modalRef.current?.open();
   }, []);
@@ -85,6 +84,7 @@ export default function FillterModalContextProvider({
               to: 0,
               from: 0,
             },
+            type: "other",
           }
         : prev.type === "on Sale"
         ? {
@@ -94,6 +94,7 @@ export default function FillterModalContextProvider({
         : {
             ...prev,
             category: "All",
+            type: "other",
           }
     );
     CloseModel();
@@ -113,7 +114,7 @@ export default function FillterModalContextProvider({
 
   const fillterProducts = useMemo(() => {
     if (products.length <= 0) return [];
-    if ("All" === "All") {
+    if (fillters.type !== "other") {
       if (q) {
         if (fillters) {
           return products.filter((product) => {
@@ -134,9 +135,9 @@ export default function FillterModalContextProvider({
         }
       }
     } else {
-      console.log("x");
-
-      // return products.filter((product) => product.category.name === category);
+      return products.filter(
+        (product) => product.category.name === fillters.category
+      );
     }
     return [];
   }, [products, q, fillter]);

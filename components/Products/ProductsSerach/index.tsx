@@ -3,30 +3,32 @@ import { Colors, Fonts } from "@/constants";
 import { useFillterModalContext } from "@/context/FillterModalContext";
 import { useAppSelector } from "@/hooks/useRedux";
 import { rf, rh, rw } from "@/utils/dimensions";
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ProductsList from "../ProductsList";
 
 function ProductsSerach({ q }: { q: string }) {
-  const { fillters } = useFillterModalContext();
-  // const { products, isLoading, isFetching, refetch, ref } = useProducts(
-  //   "All",
-  //   fillters,
-  //   q
-  // );
-  const { products, isLoadingProducts } = useAppSelector(
-    (state) => state.MainReducer
-  );
-  const { fillterProducts } = useFillterModalContext();
+  const { isLoadingProducts } = useAppSelector((state) => state.MainReducer);
+  const { fillterProducts, setFillters } = useFillterModalContext();
+
+  useEffect(() => {
+    setFillters((prev) => ({
+      ...prev,
+      category: "All",
+      type: "Price",
+    }));
+
+    return () => {};
+  }, []);
 
   return (
     <View style={styles.serachingContainer}>
       <View style={styles.fillterContainer}>
         <SerachFillters />
-        {products.length > 0 ? (
+        {fillterProducts.length > 0 ? (
           <>
             <Text style={styles.labelResults}>
-              {false ? "" : `${products.length} Results Found`}
+              {false ? "" : `${fillterProducts.length} Results Found`}
             </Text>
           </>
         ) : null}

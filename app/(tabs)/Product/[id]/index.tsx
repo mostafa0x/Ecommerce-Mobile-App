@@ -4,53 +4,79 @@ import DescriptionProduct from "@/components/Products/Details/DescriptionProduct
 import InfoProduct from "@/components/Products/Details/InfoProduct";
 import Shipping_Returns from "@/components/Products/Details/Shipping_Returns";
 import Slider from "@/components/Slider";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { getProductById } from "@/lib/store/MainSlice";
 import { rh, rw } from "@/utils/dimensions";
 import { useLocalSearchParams } from "expo-router";
 import { Skeleton } from "moti/skeleton";
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function ProductScreen() {
   const { id } = useLocalSearchParams();
+
   const productId = parseInt(Array.isArray(id) ? id[0] : id);
+  const { prdouctById, isLoadingPrdouctById } = useAppSelector(
+    (state) => state.MainReducer
+  );
+  const disPatch = useAppDispatch();
+  useEffect(() => {
+    console.log(productId);
+    disPatch(getProductById(productId));
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    console.log(prdouctById);
+
+    return () => {};
+  }, [prdouctById]);
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.appbarContainer}>
         <BackButton />
       </View>
       <View style={styles.sliderContainer}>
-        {true ? (
+        {isLoadingPrdouctById ? (
           <View style={styles.sliderSkeleton}>
             <Skeleton
+              show={isLoadingPrdouctById}
               colorMode="light"
               width={styles.sliderSkeleton.width}
               height={styles.sliderSkeleton.height}
             />
           </View>
         ) : (
-          <Slider />
+          <Slider data={prdouctById?.images ?? []} />
         )}
       </View>
       <View style={styles.secContainer}>
         <View>
-          <Skeleton colorMode="light" show>
-            <InfoProduct />
+          <Skeleton colorMode="light" show={isLoadingPrdouctById}>
+            <InfoProduct
+              data={{
+                name: prdouctById?.title ?? "",
+                price: prdouctById?.price ?? 0,
+                disPrice: prdouctById?.priceAfterDis ?? 0,
+              }}
+            />
           </Skeleton>
         </View>
         <View>
-          <Skeleton colorMode="light" show>
-            <DescriptionProduct />
+          <Skeleton colorMode="light" show={isLoadingPrdouctById}>
+            <DescriptionProduct description={prdouctById?.description ?? ""} />
           </Skeleton>
         </View>
         <View>
-          <Skeleton colorMode="light" show>
+          <Skeleton colorMode="light" show={isLoadingPrdouctById}>
             <Shipping_Returns />
           </Skeleton>
         </View>
         <View style={styles.btnBuy}>
-          <Skeleton colorMode="light" show>
+          <Skeleton colorMode="light" show={isLoadingPrdouctById}>
             <CustomButton
-              lable={"$100"}
+              lable={`$${prdouctById?.priceAfterDis ?? 0}`}
               secLable="Add to Bag"
               color={"praimry"}
               redirect={"/"}

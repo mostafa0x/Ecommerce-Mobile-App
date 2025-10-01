@@ -3,18 +3,22 @@ import { rf, rh, rw } from "@/utils/dimensions";
 import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-function InfoProduct() {
+function InfoProduct({
+  data,
+}: {
+  data: { name: string; price: number; disPrice: number };
+}) {
   return (
     <View style={styles.container}>
       <Text numberOfLines={1} style={styles.labelName}>
-        Product Name
+        {data.name}
       </Text>
       <View style={styles.priceContainer}>
         <Text numberOfLines={1} style={styles.labelPrice}>
-          $212
+          ${data.disPrice}
         </Text>
         <Text numberOfLines={1} style={styles.labelDiscount}>
-          $212
+          ${data.price}
         </Text>
       </View>
     </View>

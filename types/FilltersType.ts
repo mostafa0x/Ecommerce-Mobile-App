@@ -8,4 +8,4 @@ export interface FilltersType {
   type: TypeFillter;
 }
 
-export type TypeFillter = "on Sale" | "Sort by" | "Price";
+export type TypeFillter = "on Sale" | "Sort by" | "Price" | "other";

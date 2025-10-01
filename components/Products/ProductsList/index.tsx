@@ -24,7 +24,7 @@ function ProductsList({
   }, []);
 
   const emptyList = useCallback(() => {
-    return <EmptyList />;
+    return <EmptyList calledFrom={calledFrom} />;
   }, []);
 
   return (

@@ -20,5 +20,5 @@ export interface ProductType {
   stock: number;
   DisPercentage: number;
   priceAfterDis: number;
-  _V?: number;
+  __v?: number;
 }

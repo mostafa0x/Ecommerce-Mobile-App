@@ -8,7 +8,6 @@ import { StyleSheet, View } from "react-native";
 import FilltersButton from "./Button";
 
 function FilltersByCategories() {
-  // const { categories, isLoading } = useCategories();
   const { categories, isLoadingCategories } = useAppSelector(
     (state) => state.MainReducer
   );

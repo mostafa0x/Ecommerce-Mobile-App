@@ -6,20 +6,21 @@ import type { ICarouselInstance } from "react-native-reanimated-carousel";
 import Carousel from "react-native-reanimated-carousel";
 import SliderItem from "./Item";
 
-const defaultDataWith6Colors = [1, 2, 3, 4, 5];
-
-function Slider() {
+function Slider({ data }: { data: string[] }) {
   const ref = React.useRef<ICarouselInstance>(null);
 
-  const renderItem = useCallback(() => {
-    return <SliderItem />;
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: string }) => {
+      return <SliderItem item={item} />;
+    },
+    [data]
+  );
 
   return (
     <View id="carousel-component">
       <Carousel
         ref={ref}
-        data={defaultDataWith6Colors}
+        data={data}
         height={styles.slider.height}
         width={styles.slider.width}
         loop
