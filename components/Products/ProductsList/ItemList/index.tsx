@@ -45,9 +45,11 @@ function ItemListProduct({ isLoading, item }: ItemListProductType) {
               <Text numberOfLines={1} style={styles.price}>
                 ${item.priceAfterDis}
               </Text>
-              <Text numberOfLines={1} style={styles.priceDiscount}>
-                ${item.price}
-              </Text>
+              {item.price !== item.priceAfterDis && (
+                <Text numberOfLines={1} style={styles.priceDiscount}>
+                  ${item.price}
+                </Text>
+              )}
             </View>
           </View>
         </TouchableOpacity>

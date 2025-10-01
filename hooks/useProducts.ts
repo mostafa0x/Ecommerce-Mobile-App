@@ -1,4 +1,6 @@
 import { axiosClint } from "@/lib/api/axiosClint";
+import fillterByCategory from "@/service/fillterByCategory";
+import fillterByPrice from "@/service/fillterByPrice";
 import { CategoriesType } from "@/types/CategoriesType";
 import { FilltersType } from "@/types/FilltersType";
 import { ProductType } from "@/types/ProductsListTypes";
@@ -31,20 +33,13 @@ export default function useProducts(
       if (q) {
         if (fillters) {
           return data.filter((product) => {
-            const sortByCategory =
-              fillters.category === "All"
-                ? product.category.name !== fillters.category
-                : product.category.name === fillters.category;
-            const fillterByPrice =
-              product.priceAfterDis >= fillters.price.from &&
-              fillters.price.to !== 0
-                ? product.priceAfterDis <= fillters.price.to
-                : true;
+            const sortByCategory = fillterByCategory(fillters, product);
+            const sortByPrice = fillterByPrice(fillters, product);
             return (
               product.title
                 .toLocaleLowerCase()
                 .includes(q.toLocaleLowerCase()) &&
-              fillterByPrice &&
+              sortByPrice &&
               sortByCategory
             );
           });
