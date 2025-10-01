@@ -51,7 +51,7 @@ function CustomButton({
           justifyContent:
             secLable || activeIcon ? "space-between" : "flex-start",
         },
-        (icon || secLable) && styles.padding,
+        (icon || secLable || activeIcon) && styles.padding,
         icon
           ? undefined
           : secLable || activeIcon

@@ -30,7 +30,11 @@ function ItemListProduct({ isLoading, item }: ItemListProductType) {
           onPress={() => !isLoading && router.push(`/Product/${item.id}`)}
           style={styles.container}
         >
-          <ImageBackground style={styles.imgContainer} source={item?.images[0]}>
+          <ImageBackground
+            cachePolicy={"disk"}
+            style={styles.imgContainer}
+            source={item?.images[0]}
+          >
             <FavIcon />
           </ImageBackground>
           <View style={styles.txtContainer}>

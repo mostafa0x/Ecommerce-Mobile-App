@@ -28,13 +28,57 @@ export default function useProducts(
   const products = useMemo(() => {
     if (data.length <= 0) return [];
     if (category === "All") {
-      return q
-        ? data.filter((product) =>
+      if (q) {
+        if (fillters) {
+          return data.filter((product) => {
+            const sortByCategory =
+              fillters.category === "All"
+                ? product.category.name !== fillters.category
+                : product.category.name === fillters.category;
+            const fillterByPrice =
+              product.priceAfterDis >= fillters.price.from &&
+              fillters.price.to !== 0
+                ? product.priceAfterDis <= fillters.price.to
+                : true;
+            return (
+              product.title
+                .toLocaleLowerCase()
+                .includes(q.toLocaleLowerCase()) &&
+              fillterByPrice &&
+              sortByCategory
+            );
+          });
+        } else {
+          return data.filter((product) =>
             product.title.toLocaleLowerCase().includes(q.toLocaleLowerCase())
-          )
-        : [];
-    } else return data.filter((product) => product.category.name === category);
-  }, [data, category]);
+          );
+        }
+      }
+    } else {
+      console.log("x");
+
+      return data.filter((product) => product.category.name === category);
+    }
+    return [];
+    //   return q
+    //     ? fillters
+    //       ? data.filter(
+    //           (product) =>
+    //             product.title
+    //               .toLocaleLowerCase()
+    //               .includes(q.toLocaleLowerCase()) &&
+    //             fillters.category !== "All" &&
+    //             product.category.name === fillters.category &&
+    //             product.priceAfterDis > fillters.price.from &&
+    //             fillters.price.to > 0 &&
+    //             product.priceAfterDis <= fillters.price.to
+    //         )
+    //       : data.filter((product) =>
+    //           product.title.toLocaleLowerCase().includes(q.toLocaleLowerCase())
+    //         )
+    //     : [];
+    // } else return data.filter((product) => product.category.name === category);
+  }, [data, category, q]);
 
   return { products, ...rest };
 }
