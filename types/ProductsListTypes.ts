@@ -1,9 +1,11 @@
 import { OneCategoryType } from "./CategoriesType";
+import { FillterProdcutsType } from "./FillterProdcutsType";
 
 export interface ProductsListTypes {
   calledFrom: "Home" | "fillter";
   isLoading: boolean;
   data: ProductType[];
+  fillter?: FillterProdcutsType;
 }
 
 export interface ProductType {

@@ -26,8 +26,8 @@ export default function HomeScreen() {
         <CategorySection />
       </View>
       <View style={styles.productsContianer}>
-        <ProductsSection />
-        <ProductsSection />
+        <ProductsSection fillter title="Top Selling" />
+        <ProductsSection fillter title="New In" />
       </View>
     </ScrollView>
   );
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   categoryContainer: {},
   productsContianer: {
-    marginTop: rh(24),
-    gap: rh(50),
+    marginTop: rh(40),
+    gap: rh(24),
   },
   contentContainer: {
     flexGrow: 1,

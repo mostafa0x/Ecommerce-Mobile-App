@@ -2,7 +2,7 @@ import { loadingPrdouctsList } from "@/service/loadingValusesForLists";
 import { ProductsListTypes, ProductType } from "@/types/ProductsListTypes";
 import { rh, rw } from "@/utils/dimensions";
 import { FlashList } from "@shopify/flash-list";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import EmptyList from "./EmptyList";
 import ItemListProduct from "./ItemList";
@@ -11,8 +11,21 @@ function ProductsList({
   calledFrom = "Home",
   isLoading,
   data,
+  fillter,
 }: ProductsListTypes) {
   const fromHome = calledFrom === "Home";
+
+  const FillterData = useMemo(() => {
+    if (!fillter) return [];
+    const randomProducts = Array.from({ length: 5 }, () =>
+      Math.floor(Math.random() * data.length)
+    );
+    const newData = data.filter((product, index) =>
+      randomProducts.find((i) => i === index)
+    );
+    return newData;
+  }, [fillter, data]);
+
   const renderItem = useCallback(
     ({ item }: { item: ProductType }) => {
       return <ItemListProduct isLoading={isLoading} item={item} />;
@@ -31,7 +44,7 @@ function ProductsList({
     <View style={[styles.constainer, !fromHome && styles.fillterContainer]}>
       <FlashList
         style={styles.list}
-        data={isLoading ? loadingPrdouctsList : data}
+        data={isLoading ? loadingPrdouctsList : fillter ? FillterData : data}
         renderItem={renderItem}
         keyExtractor={(item, index) => String(item?._id ? item.id : index)}
         horizontal={fromHome}

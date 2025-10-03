@@ -84,7 +84,6 @@ export default function FillterModalContextProvider({
               to: 0,
               from: 0,
             },
-            type: "other",
           }
         : prev.type === "on Sale"
         ? {
@@ -94,7 +93,6 @@ export default function FillterModalContextProvider({
         : {
             ...prev,
             category: "All",
-            type: "other",
           }
     );
     CloseModel();

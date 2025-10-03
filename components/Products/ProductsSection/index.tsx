@@ -1,19 +1,33 @@
-import useProducts from "@/hooks/useProducts";
+import { useAppSelector } from "@/hooks/useRedux";
+import { FillterProdcutsType } from "@/types/FillterProdcutsType";
 import { rh, rw } from "@/utils/dimensions";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import ProductsList from "../ProductsList";
 import UpperSIde from "./UpperSIde";
 
-function ProductsSection() {
-  const { products, isLoading } = useProducts("Miscellaneous");
+function ProductsSection({
+  fillter,
+  title = "empty",
+}: {
+  fillter: FillterProdcutsType;
+  title: string;
+}) {
+  const { products, isLoadingProducts } = useAppSelector(
+    (state) => state.MainReducer
+  );
   return (
     <View style={styles.container}>
       <View style={styles.uppderContainer}>
-        <UpperSIde title="Top Selling" />
+        <UpperSIde title={title} />
       </View>
       <View style={styles.list}>
-        <ProductsList isLoading={isLoading} calledFrom="Home" data={products} />
+        <ProductsList
+          isLoading={isLoadingProducts}
+          calledFrom="Home"
+          data={products}
+          fillter={fillter}
+        />
       </View>
     </View>
   );

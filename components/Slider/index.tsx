@@ -6,18 +6,15 @@ import type { ICarouselInstance } from "react-native-reanimated-carousel";
 import Carousel from "react-native-reanimated-carousel";
 import SliderItem from "./Item";
 
-function Slider({ data }: { data: string[] }) {
+function Slider({ data = [] }: { data: string[] }) {
   const ref = React.useRef<ICarouselInstance>(null);
 
-  const renderItem = useCallback(
-    ({ item }: { item: string }) => {
-      return <SliderItem item={item} />;
-    },
-    [data]
-  );
+  const renderItem = useCallback(({ item }: { item: string }) => {
+    return <SliderItem item={item} />;
+  }, []);
 
   return (
-    <View id="carousel-component">
+    <View>
       <Carousel
         ref={ref}
         data={data}
@@ -28,14 +25,11 @@ function Slider({ data }: { data: string[] }) {
         autoPlayInterval={2000}
         mode="horizontal-stack"
         modeConfig={{
-          showLength: 4,
+          showLength: 2,
           stackInterval: rw(170),
           scaleInterval: 0,
           snapDirection: "left",
         }}
-        customConfig={() => ({
-          viewCount: 3,
-        })}
         scrollAnimationDuration={1000}
         pagingEnabled={true}
         renderItem={renderItem}
@@ -45,7 +39,6 @@ function Slider({ data }: { data: string[] }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
   slider: {
     height: rh(250),
     width: rw(390),
