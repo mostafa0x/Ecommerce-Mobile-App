@@ -17,11 +17,12 @@ export default function AuthScreen() {
           source={require("@/assets/images/loginImage.jpg")}
         />
       </View>
+
       <CustomButton
         lable="Continue With Google"
         color="secBg"
         icon="google"
-        redirect="/"
+        widthSize={342}
       />
     </View>
   );

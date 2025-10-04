@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Ecommerce-mobile-app",
-    "slug": "Ecommerce-mobile-app",
+    "name": "FoFo store",
+    "slug": "fofostore",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "ecommerce",
+    "scheme": "fofostore",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -37,6 +37,12 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
         }
       ]
     ],

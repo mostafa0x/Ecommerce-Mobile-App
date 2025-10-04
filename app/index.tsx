@@ -10,6 +10,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 export default function HomeScreen() {
   const router = useRouter();
   useEffect(() => {
+    router.push("/Auth");
     return () => {};
   }, []);
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   categoryContainer: {},
   productsContianer: {
     marginTop: rh(40),
-    gap: rh(24),
+    gap: rh(40),
   },
   contentContainer: {
     flexGrow: 1,

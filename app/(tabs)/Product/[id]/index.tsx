@@ -21,16 +21,9 @@ export default function ProductScreen() {
   );
   const disPatch = useAppDispatch();
   useEffect(() => {
-    console.log(productId);
     disPatch(getProductById(productId));
     return () => {};
   }, []);
-
-  useEffect(() => {
-    console.log(prdouctById);
-
-    return () => {};
-  }, [prdouctById]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

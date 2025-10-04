@@ -8,7 +8,7 @@ export default function UpperSIde({ title = "Empty" }: { title: string }) {
   return (
     <View style={styles.upperContiner}>
       <Text style={styles.title}>{title}</Text>
-      <Link href={"/Auth"} style={styles.secTitle}>
+      <Link href={"/Serach"} style={styles.secTitle}>
         See All
       </Link>
     </View>
